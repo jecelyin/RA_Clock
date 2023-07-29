@@ -12,11 +12,19 @@
 
 #define FLASH_DF_BLOCK_0                0x40100000U/*   1 KB: 0x40100000 - 0x401003FF */
 
+#define TIME_SEC    0
+#define TIME_MIN    1
+#define TIME_HOUR   2
+#define TIME_DAY    3
+#define TIME_DATE   4
+#define TIME_MONTH  5
+#define TIME_YEAR   6
+
 /*FLASH写入程序*/
-void WriteFlashTest(uint32_t L, uint8_t Data[], uint32_t addr);
+void SaveTimeFlash();
 
 /*FLASH读取打印程序*/
-void PrintFlashTest(uint32_t addr);
+void ReadTimeFlash();
 
 
 #endif /* FLASH_SMG_H_ */

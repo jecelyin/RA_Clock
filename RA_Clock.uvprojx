@@ -463,21 +463,6 @@
               <FilePath>.\src\aht20.h</FilePath>
             </File>
             <File>
-              <FileName>ds3231.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\ds3231.c</FilePath>
-            </File>
-            <File>
-              <FileName>ds3231.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\ds3231.h</FilePath>
-            </File>
-            <File>
-              <FileName>ds3231_low_level.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\ds3231_low_level.c</FilePath>
-            </File>
-            <File>
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\buzzer.c</FilePath>
@@ -486,6 +471,36 @@
               <FileName>buzzer.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\buzzer.h</FilePath>
+            </File>
+            <File>
+              <FileName>driver_ds3231_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\driver_ds3231_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>driver_ds3231.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\driver_ds3231.h</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>driver_ds3231_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\driver_ds3231_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>driver_ds3231.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\driver_ds3231.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\rtc.h</FilePath>
             </File>
           </Files>
         </Group>

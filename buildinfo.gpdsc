@@ -13,23 +13,26 @@
         <file category="include" name="src/"/>
         <file category="header" name="src/utils.h" path=""/>
         <file category="source" name="src/smg.c"/>
+        <file category="header" name="src/driver_ds3231_interface.h" path=""/>
+        <file category="header" name="src/driver_ds3231.h" path=""/>
         <file category="source" name="src/aht20.c"/>
+        <file category="source" name="src/rtc.c"/>
         <file category="source" name="src/flash_smg.c"/>
-        <file category="source" name="src/ds3231.c"/>
         <file category="header" name="src/my_entry.h" path=""/>
         <file category="source" name="src/i2c.c"/>
         <file category="source" name="src/timer_smg.c"/>
         <file category="source" name="src/buzzer.c"/>
+        <file category="source" name="src/driver_ds3231_interface.c"/>
         <file category="header" name="src/smg.h" path=""/>
+        <file category="source" name="src/driver_ds3231.c"/>
         <file category="source" name="src/utils.c"/>
+        <file category="header" name="src/rtc.h" path=""/>
         <file category="header" name="src/aht20.h" path=""/>
         <file category="source" name="src/my_entry.c"/>
         <file category="header" name="src/flash_smg.h" path=""/>
-        <file category="header" name="src/ds3231.h" path=""/>
         <file category="header" name="src/timer_smg.h" path=""/>
         <file category="header" name="src/buzzer.h" path=""/>
         <file category="source" name="src/hal_entry.c"/>
-        <file category="source" name="src/ds3231_low_level.c"/>
         <file category="header" name="src/i2c.h" path=""/>
       </project_files>
     </generator>
@@ -41,6 +44,7 @@
         <file category="include" name="ra/fsp/inc/"/>
         <file category="include" name="ra/fsp/inc/api/"/>
         <file category="include" name="ra/fsp/inc/instances/"/>
+        <file category="other" name="ra/.DS_Store"/>
         <file category="header" name="ra/fsp/inc/fsp_features.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_elc_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_ioport_api.h" path=""/>

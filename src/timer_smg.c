@@ -9,10 +9,10 @@
 #include "stdio.h"
 #include "buzzer.h"
 
-//数码管变量
-extern uint8_t num1, num2, num3, num4;//4个数码管显示的数值
-extern uint8_t num_flag;//4个数码管和冒号轮流显示，一轮刷新五次
 
+//数码管变量
+uint8_t num1 = 1, num2 = 4, num3 = 6, num4 = 8;//4个数码管显示的数值
+uint8_t num_flag = 0;//4个数码管和冒号轮流显示，一轮刷新五次
 
 int sw1_num1 = 0;//按键SW1计数值，去抖和长按短按判断
 int sw2_num1 = 0;//按键SW2计数值，去抖和长按短按判断
@@ -39,7 +39,7 @@ extern bsp_io_level_t qe_sw;//触摸电容状态
 
 //数码管显示状态，0正常显示，1修改小时，2修改分钟，3保存修改数据，4温度，5湿度
 extern int smg_mode;
-extern int sec, min, hour;//保存时间数据
+extern uint8_t sec, min, hour;//保存时间数据
 extern uint16_t time_mode_num;//定时器刷新时间，实现闪烁效果
 
 

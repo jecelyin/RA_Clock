@@ -13,6 +13,8 @@
 #include "utils.h"
 #include "qe_touch_config.h"
 #include "buzzer.h"
+#include "rtc.h"
+#include "driver_ds3231.h"
 
 
 //温湿度变量定义
@@ -23,11 +25,11 @@ uint8_t temp_decimal;//温度小数
 uint8_t dht11_check;//校验值
 
 //数码管变量
-uint8_t num1 = 1, num2 = 4, num3 = 6, num4 = 8;//4个数码管显示的数值
-uint8_t num_flag = 0;//4个数码管和冒号轮流显示，一轮刷新五次
-
+extern uint8_t num1, num2, num3, num4;//4个数码管显示的数值
+extern uint8_t num_flag;//4个数码管和冒号轮流显示，一轮刷新五次
 
 //RTC变量
+ds3231_time_t current_time;
 /* rtc_time_t is an alias for the C Standard time.h struct 'tm' */
 rtc_time_t set_time =
         {
@@ -75,6 +77,7 @@ void rtc_callback(rtc_callback_args_t *p_args) {
         rtc_alarm_flag = 1;
 }
 
+
 //bsp_io_level_t sw1;//按键SW1状态
 //bsp_io_level_t sw2;//按键SW2状态
 //bsp_io_level_t sw3;//按键SW3状态
@@ -85,11 +88,10 @@ void qe_touch_sw(void);
 
 //数码管显示状态，0正常显示，1修改小时，2修改分钟，3保存修改数据，4温度，5湿度
 int smg_mode = 0;
-int sec = 0, min = 0, hour = 0;//保存时间数据
+//int sec = 0, min = 0, hour = 0;//保存时间数据
 uint16_t time_mode_num = 0;//定时器刷新时间，实现闪烁效果
+uint8_t sec, min, hour;
 
-volatile uint8_t g_src_uint8[4] = {0x00, 0x00, 0x00, 0x00};//时间保存在该数组里面
-volatile uint8_t g_src_uint8_length = 4;
 uint8_t flash_flag = 0;//保存时间数据，一半在每过一分钟或者按键修改时间
 static fsp_err_t err = FSP_SUCCESS;
 
@@ -103,6 +105,7 @@ void parse_aht20( int8_t temperature, uint8_t humidity, enum AHT20_STATUS status
     humdity_integer = humidity;
     temp_integer = temperature;
 }
+
 
 void my_entry() {
     printf("my entry start...");
@@ -131,15 +134,10 @@ void my_entry() {
     err = R_FLASH_LP_Open(&g_flash0_ctrl, &g_flash0_cfg);
     assert(FSP_SUCCESS == err);
 
-    //       WriteFlashTest(4,g_src_uint8 ,FLASH_DF_BLOCK_0);
-
-    PrintFlashTest(FLASH_DF_BLOCK_0);
-
-    set_time.tm_sec = 0; //时间数据 秒
-    set_time.tm_min = min; //时间数据 分钟
-    hour = set_time.tm_hour = hour; //时间数据 小时
+    ReadTimeFlash();
 
     /**********************RTC开启***************************************/
+//    rtc_time_t get_time;
     /* Initialize the RTC module*/
     err = R_RTC_Open(&g_rtc0_ctrl, &g_rtc0_cfg);
     /* Handle any errors. This function should be defined by the user. */
@@ -155,17 +153,22 @@ void my_entry() {
 
     R_RTC_CalendarAlarmSet(&g_rtc0_ctrl, &set_alarm_time);
     uint8_t rtc_second = 0;      //秒
-    uint8_t rtc_minute = 0;      //分
-    uint8_t rtc_hour = 0;         //时
-    uint8_t rtc_day = 0;          //日
-    uint8_t rtc_month = 0;      //月
-    uint16_t rtc_year = 0;        //年
-    uint8_t rtc_week = 0;        //周
-    rtc_time_t get_time;
+//    uint8_t rtc_minute = 0;      //分
+//    uint8_t rtc_hour = 0;         //时
+//    uint8_t rtc_day = 0;          //日
+//    uint8_t rtc_month = 0;      //月
+//    uint16_t rtc_year = 0;        //年
+//    uint8_t rtc_week = 0;        //周
+//    rtc_time_t get_time;
 
-    sec = set_time.tm_sec;        //时间数据 秒
-    min = set_time.tm_min;        //时间数据 分钟
-    hour = set_time.tm_hour;        //时间数据 小时
+    /*************************** DS3231 START **************************************/
+    rtc_init();
+    /*************************** DS3231 END **************************************/
+    rtc_get_time(&current_time);
+
+    sec = current_time.second;        //时间数据 秒
+    min = current_time.minute;        //时间数据 分钟
+    hour = current_time.hour;        //时间数据 小时
 
     /* Open Touch middleware */
     err = RM_TOUCH_Open (g_qe_touch_instance_config01.p_ctrl, g_qe_touch_instance_config01.p_cfg);
@@ -178,42 +181,39 @@ void my_entry() {
 
         if (flash_flag)        //按键修改完毕数据后进行保存
         {
-            g_src_uint8[0] = hour;
-            g_src_uint8[1] = min;
-            WriteFlashTest(4, g_src_uint8, FLASH_DF_BLOCK_0);
+            current_time.format = DS3231_FORMAT_24H;
+            current_time.hour = hour;
+            current_time.minute = min;
+            rtc_set_time(&current_time);
+            SaveTimeFlash();
             flash_flag = 0;
         }
 
+
         if (rtc_flag) {
-            R_RTC_CalendarTimeGet(&g_rtc0_ctrl, &get_time);        //获取RTC计数时间
+            rtc_get_time(&current_time); //获取RTC计数时间
             rtc_flag = 0;
-            rtc_second = get_time.tm_sec;        //秒
-            rtc_minute = get_time.tm_min;        //分
-            rtc_hour = get_time.tm_hour;        //时
-            rtc_day = get_time.tm_mday;        //日
-            rtc_month = get_time.tm_mon;        //月
-            rtc_year = get_time.tm_year; //年
-            rtc_week = get_time.tm_wday; //周
-//            printf(" %d y %d m %d d %d h %d m %d s %d w\n", rtc_year + 1900, rtc_month, rtc_day, rtc_hour, rtc_minute,
-//                   rtc_second, rtc_week);
-
-            //时间显示
-            num1 = rtc_hour / 10;
-            num2 = rtc_hour % 10;
-
-            num3 = rtc_minute / 10;
-            num4 = rtc_minute % 10;
-            if (rtc_second == 0 && smg_mode == 0) //这个时候刷新变量
+            if (current_time.format == DS3231_FORMAT_24H)
             {
-                sec = rtc_second; //时间数据 秒
-                min = rtc_minute; //时间数据 分钟
-                hour = rtc_hour; //时间数据 小时
-
-                g_src_uint8[0] = hour;
-                g_src_uint8[1] = min;
-                WriteFlashTest(4, g_src_uint8, FLASH_DF_BLOCK_0);
-
+                printf("ds3231: %04d-%02d-%02d %02d:%02d:%02d %d.\n",
+                       current_time.year, current_time.month, current_time.date,
+                       current_time.hour, current_time.minute, current_time.second, current_time.week
+                );
             }
+            else
+            {
+                printf("ds3231: %04d-%02d-%02d %s %02d:%02d:%02d %d.\n",
+                       current_time.year, current_time.month, current_time.date, (current_time.am_pm == DS3231_AM) ? "AM" : "PM",
+                       current_time.hour, current_time.minute, current_time.second, current_time.week
+                );
+            }
+            //时间显示
+            num1 = current_time.hour / 10;
+            num2 = current_time.hour % 10;
+
+            num3 = current_time.minute / 10;
+            num4 = current_time.minute % 10;
+
             if (rtc_second % 5 == 0) //5S读一次
             {
 //                DHT11_Read ();
