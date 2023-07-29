@@ -173,25 +173,9 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>1542</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\src\driver_ds3231.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>192</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>29488</Address>
+          <Address>29500</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -202,33 +186,17 @@
           <ExecCommand></ExecCommand>
           <Expression>\\RA_Clock\src/timer_smg.c\192</Expression>
         </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>1542</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>22218</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>\Mac\Renesas\RA_Clock\src\driver_ds3231.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\RA_Clock\src/driver_ds3231.c\1542</Expression>
-        </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ret</ItemText>
+          <ItemText>buf10</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>data_array[1],0x0A</ItemText>
+          <ItemText>data</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

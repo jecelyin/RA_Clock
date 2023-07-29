@@ -5,6 +5,7 @@ uint32_t timeout_ms = 1000;
 
 i2c_master_event_t i2c_event = I2C_MASTER_EVENT_ABORTED;
 
+uint8_t buf10[10] = {0};
 
 void i2c_master_callback(i2c_master_callback_args_t *p_args) {
 //    printf("i2c_master_callback, start\n");
@@ -90,11 +91,18 @@ bool I2C_Write(uint8_t const addr, uint8_t *const data, uint16_t const length) {
 
 bool I2C_Write_Register(uint8_t const addr, uint8_t reg_address, uint8_t *const data, uint16_t const length) {
     R_IIC_MASTER_SlaveAddressSet(&g_i2c_master0_ctrl, addr, I2C_MASTER_ADDR_MODE_7BIT);
-    fsp_err_t err = R_IIC_MASTER_Write(&g_i2c_master0_ctrl, &reg_address, 0x1, false);
-    assert(FSP_SUCCESS == err);
 
-    I2C_WaitResult();
-    err = R_IIC_MASTER_Write(&g_i2c_master0_ctrl, data, length, false);
+//    fsp_err_t err = R_IIC_MASTER_Write(&g_i2c_master0_ctrl, &reg_address, 0x1, false);
+//    assert(FSP_SUCCESS == err);
+//
+//    I2C_WaitResult();
+//    err = R_IIC_MASTER_Write(&g_i2c_master0_ctrl, data, length, false);
+//    assert(FSP_SUCCESS == err);
+    buf10[0] = reg_address;
+    for (int i = 0; i < length; ++i) {
+        buf10[1 + i] = data[i];
+    }
+    fsp_err_t err = R_IIC_MASTER_Write(&g_i2c_master0_ctrl, buf10, length + 1, false);
     assert(FSP_SUCCESS == err);
 
     return I2C_WaitResult();

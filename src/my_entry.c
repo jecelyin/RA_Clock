@@ -184,29 +184,20 @@ void my_entry() {
             current_time.format = DS3231_FORMAT_24H;
             current_time.hour = hour;
             current_time.minute = min;
+            current_time.second = 0;
             rtc_set_time(&current_time);
             SaveTimeFlash();
             flash_flag = 0;
+            delay_ms(100);
         }
 
 
         if (rtc_flag) {
             rtc_get_time(&current_time); //获取RTC计数时间
             rtc_flag = 0;
-            if (current_time.format == DS3231_FORMAT_24H)
-            {
-                printf("ds3231: %04d-%02d-%02d %02d:%02d:%02d %d.\n",
-                       current_time.year, current_time.month, current_time.date,
-                       current_time.hour, current_time.minute, current_time.second, current_time.week
-                );
-            }
-            else
-            {
-                printf("ds3231: %04d-%02d-%02d %s %02d:%02d:%02d %d.\n",
-                       current_time.year, current_time.month, current_time.date, (current_time.am_pm == DS3231_AM) ? "AM" : "PM",
-                       current_time.hour, current_time.minute, current_time.second, current_time.week
-                );
-            }
+
+//            hour = current_time.hour;
+//            min = current_time.minute;
             //时间显示
             num1 = current_time.hour / 10;
             num2 = current_time.hour % 10;
@@ -220,7 +211,20 @@ void my_entry() {
                 aht20_trigger_measurement();
                 aht20_event();
                 printf("hum=%d temp=%d\n", humdity_integer, temp_integer);
-
+                if (current_time.format == DS3231_FORMAT_24H)
+                {
+                    printf("ds3231: %04d-%02d-%02d %02d:%02d:%02d %d.\n",
+                           current_time.year, current_time.month, current_time.date,
+                           current_time.hour, current_time.minute, current_time.second, current_time.week
+                    );
+                }
+                else
+                {
+                    printf("ds3231: %04d-%02d-%02d %s %02d:%02d:%02d %d.\n",
+                           current_time.year, current_time.month, current_time.date, (current_time.am_pm == DS3231_AM) ? "AM" : "PM",
+                           current_time.hour, current_time.minute, current_time.second, current_time.week
+                    );
+                }
             }
 
         }

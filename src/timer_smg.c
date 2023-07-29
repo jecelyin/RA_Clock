@@ -176,12 +176,6 @@ void set_smg_button(void) {
     R_IOPORT_PinRead(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_07, &sw2);
     R_IOPORT_PinRead(&g_ioport_ctrl, BSP_IO_PORT_04_PIN_08, &sw3);
     R_IOPORT_PinRead(&g_ioport_ctrl, BSP_IO_PORT_00_PIN_00, &sw4);
-    if (!sw2)
-        printf("sw2=%d\n", sw2);
-    if (!sw3)
-        printf("sw3=%d\n", sw3);
-    if (!sw4)
-        printf("sw4=%d\n", sw4);
     if (sw1 + sw2 + sw3 + sw4 == 4 && qe_sw == 0)//按键都没按下,清除按键按下计数值
     {
         sw1_num1 = 0;
@@ -193,7 +187,7 @@ void set_smg_button(void) {
     {
         if (sw1_num1 < 2001)//按下小于10s,1001是防止变量在1000时候一直切换模式
             sw1_num1++;
-        if (sw1_num1 % 10 == 0)//模式切换,按下
+        if (sw1_num1 % 22 == 0)//模式切换,按下
         {
             //buzzer_num=20;//蜂鸣器叫200ms
             if (smg_mode > 2)
