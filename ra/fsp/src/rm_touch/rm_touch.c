@@ -26,7 +26,7 @@
 #endif
 #include "rm_touch.h"
 #include "r_ctsu.h"
-
+#include "stdio.h"
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
@@ -1672,7 +1672,7 @@ void touch_button_self_decode (touch_button_info_t * p_binfo, uint16_t value, ui
     }
 
     threshold_sub_hys = (uint16_t) (threshold - (*(p_binfo->p_hysteresis + button_id)));
-
+//    printf("touch, threshold=%d, threshold_sub_hys=%d, value=%d\n", threshold, threshold_sub_hys, value);
     /* threshold_sub_hys < scan value = Touch */
     if (threshold < value)
     {

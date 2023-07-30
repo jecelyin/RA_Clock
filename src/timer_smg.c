@@ -242,12 +242,12 @@ void set_smg_button(void) {
             }
         }
         printf("press key3\n");
-    } else if (sw4 == 0 && sw1 && sw2 && sw3 && qe_sw == 0)//只有SW3按下
+//    } else if (sw4 == 0 && sw1 && sw2 && sw3 && qe_sw == 0)//只有SW4按下
+    } else if (sw1 && sw2 && sw3 && (sw4 == 0 || qe_sw)) //只有SW4 or 触摸电容按下
     {
         press_sound();
         printf("press key4\n");
-    } else if (sw1 && sw2 && sw3 && sw4 && qe_sw)//只有触摸电容按下
-    {
+//    } else if (sw1 && sw2 && sw3 && sw4 && qe_sw) { //只有触摸电容按下
         if (qe_sw_num1 < 30)//2000ms 切换一次
             qe_sw_num1++;
         else {
