@@ -64,9 +64,9 @@
       <configSetting altId="p914.output.low" configurationId="p914"/>
       <configSetting altId="sci9.rxd.p110" configurationId="sci9.rxd" isUsedByDriver="true"/>
       <configSetting altId="sci9.txd.p109" configurationId="sci9.txd" isUsedByDriver="true"/>
-      <configSetting altId="spi0.miso.p100" configurationId="spi0.miso"/>
-      <configSetting altId="spi0.mosi.p101" configurationId="spi0.mosi"/>
-      <configSetting altId="spi0.rspck.p102" configurationId="spi0.rspck"/>
+      <configSetting altId="spi0.miso.p100" configurationId="spi0.miso" isUsedByDriver="true"/>
+      <configSetting altId="spi0.mosi.p101" configurationId="spi0.mosi" isUsedByDriver="true"/>
+      <configSetting altId="spi0.rspck.p102" configurationId="spi0.rspck" isUsedByDriver="true"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>

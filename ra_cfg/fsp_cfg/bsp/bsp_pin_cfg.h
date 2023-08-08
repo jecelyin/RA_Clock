@@ -6,6 +6,9 @@
 /* Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
 FSP_HEADER
 
+#define SPI_DC (BSP_IO_PORT_00_PIN_12)
+#define SPI_CS (BSP_IO_PORT_00_PIN_13)
+#define SPI_RST (BSP_IO_PORT_00_PIN_14)
 #define Buzzer (BSP_IO_PORT_03_PIN_02)
 extern const ioport_cfg_t g_bsp_pin_cfg; /* R7FA2E1A72DFL.pincfg */
 

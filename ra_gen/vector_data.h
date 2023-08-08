@@ -6,7 +6,7 @@
         #endif
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (16)
+        #define VECTOR_DATA_IRQ_COUNT    (20)
         #endif
         /* ISR prototypes */
         void gpt_counter_overflow_isr(void);
@@ -20,10 +20,14 @@
         void iic_master_rxi_isr(void);
         void iic_master_txi_isr(void);
         void iic_master_eri_isr(void);
+        void spi_rxi_isr(void);
         void ctsu_write_isr(void);
         void iic_master_tei_isr(void);
         void ctsu_end_isr(void);
+        void spi_txi_isr(void);
         void ctsu_read_isr(void);
+        void spi_eri_isr(void);
+        void spi_tei_isr(void);
 
         /* Vector table allocations */
         #define VECTOR_NUMBER_GPT0_COUNTER_OVERFLOW ((IRQn_Type) 0) /* GPT0 COUNTER OVERFLOW (Overflow) */
@@ -50,14 +54,22 @@
         #define RTC_PERIOD_IRQn          ((IRQn_Type) 10) /* RTC PERIOD (Periodic interrupt) */
         #define VECTOR_NUMBER_IIC0_ERI ((IRQn_Type) 11) /* IIC0 ERI (Transfer error) */
         #define IIC0_ERI_IRQn          ((IRQn_Type) 11) /* IIC0 ERI (Transfer error) */
+        #define VECTOR_NUMBER_SPI0_RXI ((IRQn_Type) 12) /* SPI0 RXI (Receive buffer full) */
+        #define SPI0_RXI_IRQn          ((IRQn_Type) 12) /* SPI0 RXI (Receive buffer full) */
         #define VECTOR_NUMBER_CTSU_WRITE ((IRQn_Type) 13) /* CTSU WRITE (Write request interrupt) */
         #define CTSU_WRITE_IRQn          ((IRQn_Type) 13) /* CTSU WRITE (Write request interrupt) */
         #define VECTOR_NUMBER_IIC0_TEI ((IRQn_Type) 14) /* IIC0 TEI (Transmit end) */
         #define IIC0_TEI_IRQn          ((IRQn_Type) 14) /* IIC0 TEI (Transmit end) */
         #define VECTOR_NUMBER_CTSU_END ((IRQn_Type) 15) /* CTSU END (Measurement end interrupt) */
         #define CTSU_END_IRQn          ((IRQn_Type) 15) /* CTSU END (Measurement end interrupt) */
+        #define VECTOR_NUMBER_SPI0_TXI ((IRQn_Type) 17) /* SPI0 TXI (Transmit buffer empty) */
+        #define SPI0_TXI_IRQn          ((IRQn_Type) 17) /* SPI0 TXI (Transmit buffer empty) */
         #define VECTOR_NUMBER_CTSU_READ ((IRQn_Type) 18) /* CTSU READ (Measurement data transfer request interrupt) */
         #define CTSU_READ_IRQn          ((IRQn_Type) 18) /* CTSU READ (Measurement data transfer request interrupt) */
+        #define VECTOR_NUMBER_SPI0_ERI ((IRQn_Type) 19) /* SPI0 ERI (Error) */
+        #define SPI0_ERI_IRQn          ((IRQn_Type) 19) /* SPI0 ERI (Error) */
+        #define VECTOR_NUMBER_SPI0_TEI ((IRQn_Type) 22) /* SPI0 TEI (Transmission complete event) */
+        #define SPI0_TEI_IRQn          ((IRQn_Type) 22) /* SPI0 TEI (Transmission complete event) */
         #ifdef __cplusplus
         }
         #endif

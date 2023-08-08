@@ -15,6 +15,9 @@
 #include "buzzer.h"
 #include "rtc.h"
 #include "driver_ds3231.h"
+#include "DEV_Config.h"
+#include "epaper.h"
+#include "ui.h"
 
 
 //温湿度变量定义
@@ -112,6 +115,12 @@ void my_entry() {
 //    fsp_err_t status = R_IIC_MASTER_Open(&g_i2c_master0_ctrl, &g_i2c_master0_cfg);
 //    assert(FSP_SUCCESS == status);
 
+    /**********************温湿度测试***************************************/
+    printf("e-Paper Init and Clear...\r\n");
+    epd_init();
+    epd_clear();
+    delay_ms(500);
+    ui_main();
     /**********************温湿度测试***************************************/
     //Init aht20
     aht20_init();

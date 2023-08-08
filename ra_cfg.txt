@@ -89,9 +89,9 @@ FSP Configuration
       P002 46 GPIO - - None "Output mode (Initial Low)" - - "ADC0: AN002; CTSU0: TS23; ICU0: IRQ02" - IO - - 
       P010 45 GPIO - - - "Output mode (Initial Low)" - - "ADC0: AN005; ANALOG0: VREFH0; CTSU0: TS30-CFC" - IO - - 
       P011 44 GPIO - - - "Output mode (Initial Low)" - - "ADC0: AN006; ANALOG0: VREFL0; CTSU0: TS31-CFC" - IO - - 
-      P012 41 GPIO - - - "Output mode (Initial Low)" - - "ADC0: AN007; CTSU0: TS32-CFC" - IO - - 
-      P013 40 GPIO - - - "Output mode (Initial Low)" - - "ADC0: AN008; CTSU0: TS33-CFC" - IO - - 
-      P014 39 GPIO - - - "Output mode (Initial Low)" - - "ADC0: AN009" - IO - - 
+      P012 41 GPIO SPI_DC - - "Output mode (Initial Low)" - - "ADC0: AN007; CTSU0: TS32-CFC" - IO - - 
+      P013 40 GPIO SPI_CS - - "Output mode (Initial Low)" - - "ADC0: AN008; CTSU0: TS33-CFC" - IO - - 
+      P014 39 GPIO SPI_RST - - "Output mode (Initial Low)" - - "ADC0: AN009" - IO - - 
       P015 38 CTSU0_TS28-CFC - - None "Peripheral mode" - None "ADC0: AN010; CTSU0: TS28-CFC; ICU0: IRQ07" - IO - - 
       P100 36 SPI0_MISOA - - None "Peripheral mode" CMOS None "ACMPLP0: CMPIN0; ADC0: AN022; AGT0: AGTIO0; CTSU0: TS26-CFC; GPT_POEG0: GTETRGA; GPT8: GTIOC8B; ICU0: IRQ02; IIC0: SCL0; KINT0: KRM00; SCI0: RXD0; SCI0: SCL0; SCI1: SCK1; SPI0: MISOA" - IO - - 
       P101 35 SPI0_MOSIA - - None "Peripheral mode" CMOS None "ACMPLP0: CMPREF0; ADC0: AN021; AGT0: AGTEE0; CTSU0: TS16-CFC; GPT_POEG1: GTETRGB; GPT8: GTIOC8A; ICU0: IRQ01; IIC0: SDA0; KINT0: KRM01; SCI0: SDA0; SCI0: TXD0; SCI1: CTS1; SPI0: MOSIA" - IO - - 
@@ -175,6 +175,15 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Support for using DTC: Disabled
     Interrupt priority level: Priority 2
+    
+  Module "SPI (r_spi)"
+    Parameter Checking: Default (BSP)
+    Enable Support for using a transfer API: Enabled
+    Enable Transmitting from RXI Interrupt: Enabled
+    
+  Module "Transfer (r_dtc)"
+    Parameter Checking: Default (BSP)
+    Linker section to keep DTC vector table: .fsp_dtc_vector_table
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -296,4 +305,59 @@ FSP Configuration
       
       Instance " CTSU (r_ctsu)"
         Scan Start Trigger: Software
+        
+    Instance "g_spi0 SPI (r_spi)"
+      Name: g_spi0
+      Channel: 0
+      Receive Interrupt Priority: Priority 2
+      Transmit Buffer Empty Interrupt Priority: Priority 2
+      Transfer Complete Interrupt Priority: Priority 2
+      Error Interrupt Priority: Priority 2
+      Operating Mode: Master
+      Clock Phase: Data sampling on odd edge, data variation on even edge
+      Clock Polarity: Low when idle
+      Mode Fault Error: Disable
+      Bit Order: MSB First
+      Callback: spi_callback
+      SPI Mode: Clock Synchronous Operation
+      Full or Transmit Only Mode: Full Duplex
+      Slave Select Polarity: Active Low
+      Select SSL(Slave Select): SSL0
+      MOSI Idle State: MOSI Idle Value Fixing Disable
+      Parity Mode: Disabled
+      Byte Swapping: Disable
+      Bitrate: 16000000
+      Clock Delay: 1 Clock
+      SSL Negation Delay: 1 Clock
+      Next Access Delay: 1 Clock
+      
+      Instance "g_transfer0 Transfer (r_dtc) SPI0 TXI (Transmit buffer empty)"
+        Name: g_transfer0
+        Mode: Normal
+        Transfer Size: 2 Bytes
+        Destination Address Mode: Fixed
+        Source Address Mode: Incremented
+        Repeat Area (Unused in Normal Mode): Source
+        Destination Pointer: NULL
+        Source Pointer: NULL
+        Interrupt Frequency: After all transfers have completed
+        Number of Transfers: 0
+        Number of Blocks (Valid only in Block Mode): 0
+        Number of Transfer Descriptors: 1
+        Activation Source: SPI0 TXI (Transmit buffer empty)
+        
+      Instance "g_transfer1 Transfer (r_dtc) SPI0 RXI (Receive buffer full)"
+        Name: g_transfer1
+        Mode: Normal
+        Transfer Size: 2 Bytes
+        Destination Address Mode: Incremented
+        Source Address Mode: Fixed
+        Repeat Area (Unused in Normal Mode): Destination
+        Destination Pointer: NULL
+        Source Pointer: NULL
+        Interrupt Frequency: After all transfers have completed
+        Number of Transfers: 0
+        Number of Blocks (Valid only in Block Mode): 0
+        Number of Transfer Descriptors: 1
+        Activation Source: SPI0 RXI (Receive buffer full)
         

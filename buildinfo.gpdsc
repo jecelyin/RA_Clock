@@ -15,9 +15,16 @@
         <file category="source" name="src/smg.c"/>
         <file category="header" name="src/driver_ds3231_interface.h" path=""/>
         <file category="header" name="src/driver_ds3231.h" path=""/>
+        <file category="header" name="src/Debug.h" path=""/>
+        <file category="source" name="src/GUI_Paint.c"/>
+        <file category="other" name="src/.DS_Store"/>
+        <file category="header" name="src/ui.h" path=""/>
         <file category="source" name="src/aht20.c"/>
         <file category="source" name="src/rtc.c"/>
+        <file category="header" name="src/epaper.h" path=""/>
         <file category="source" name="src/flash_smg.c"/>
+        <file category="header" name="src/EPD_2in9.h" path=""/>
+        <file category="header" name="src/DEV_Config.h" path=""/>
         <file category="header" name="src/my_entry.h" path=""/>
         <file category="source" name="src/i2c.c"/>
         <file category="source" name="src/timer_smg.c"/>
@@ -28,8 +35,20 @@
         <file category="source" name="src/utils.c"/>
         <file category="header" name="src/rtc.h" path=""/>
         <file category="header" name="src/aht20.h" path=""/>
+        <file category="source" name="src/ui.c"/>
+        <file category="header" name="src/GUI_Paint.h" path=""/>
         <file category="source" name="src/my_entry.c"/>
+        <file category="source" name="src/DEV_Config.c"/>
+        <file category="source" name="src/EPD_2in9.c"/>
         <file category="header" name="src/flash_smg.h" path=""/>
+        <file category="header" name="src/Fonts/fonts.h" path=""/>
+        <file category="source" name="src/Fonts/font12CN.c"/>
+        <file category="source" name="src/Fonts/font20.c"/>
+        <file category="source" name="src/Fonts/font24.c"/>
+        <file category="source" name="src/Fonts/font12.c"/>
+        <file category="source" name="src/Fonts/font24CN.c"/>
+        <file category="source" name="src/Fonts/font16.c"/>
+        <file category="source" name="src/Fonts/font8.c"/>
         <file category="header" name="src/timer_smg.h" path=""/>
         <file category="header" name="src/buzzer.h" path=""/>
         <file category="source" name="src/hal_entry.c"/>
@@ -60,13 +79,16 @@
         <file category="header" name="ra/fsp/inc/api/r_ctsu_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/fsp_common_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_transfer_api.h" path=""/>
+        <file category="header" name="ra/fsp/inc/api/r_spi_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_sci_uart.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_gpt.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_iic_master.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_ioport.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/rm_touch.h" path=""/>
+        <file category="header" name="ra/fsp/inc/instances/r_spi.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_ctsu.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_rtc.h" path=""/>
+        <file category="header" name="ra/fsp/inc/instances/r_dtc.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_flash_lp.h" path=""/>
         <file category="header" name="ra/fsp/inc/fsp_version.h" path=""/>
         <file category="source" name="ra/fsp/src/r_ioport/r_ioport.c"/>
@@ -111,6 +133,8 @@
         <file category="source" name="ra/fsp/src/r_ctsu/r_ctsu.c"/>
         <file category="source" name="ra/fsp/src/r_rtc/r_rtc.c"/>
         <file category="source" name="ra/fsp/src/r_flash_lp/r_flash_lp.c"/>
+        <file category="source" name="ra/fsp/src/r_dtc/r_dtc.c"/>
+        <file category="source" name="ra/fsp/src/r_spi/r_spi.c"/>
         <file category="header" name="ra/arm/CMSIS_5/CMSIS/Core/Include/core_cm85.h" path=""/>
         <file category="header" name="ra/arm/CMSIS_5/CMSIS/Core/Include/cachel1_armv7.h" path=""/>
         <file category="header" name="ra/arm/CMSIS_5/CMSIS/Core/Include/pac_armv81.h" path=""/>
@@ -157,9 +181,11 @@
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/board_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_ioport_cfg.h" path=""/>
+        <file category="header" name="ra_cfg/fsp_cfg/r_dtc_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_sci_uart_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_flash_lp_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_ctsu_cfg.h" path=""/>
+        <file category="header" name="ra_cfg/fsp_cfg/r_spi_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_gpt_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/rm_touch_cfg.h" path=""/>
       </files>

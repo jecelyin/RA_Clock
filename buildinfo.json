@@ -6,6 +6,7 @@
   "sourcePaths": [
     "ra",
     "ra_gen",
+    "qe_gen",
     "src"
   ],
   "excludedFilePaths": [],

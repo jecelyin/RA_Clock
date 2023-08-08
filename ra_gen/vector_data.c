@@ -16,10 +16,14 @@
             [9] = iic_master_txi_isr, /* IIC0 TXI (Transmit data empty) */
             [10] = rtc_alarm_periodic_isr, /* RTC PERIOD (Periodic interrupt) */
             [11] = iic_master_eri_isr, /* IIC0 ERI (Transfer error) */
+            [12] = spi_rxi_isr, /* SPI0 RXI (Receive buffer full) */
             [13] = ctsu_write_isr, /* CTSU WRITE (Write request interrupt) */
             [14] = iic_master_tei_isr, /* IIC0 TEI (Transmit end) */
             [15] = ctsu_end_isr, /* CTSU END (Measurement end interrupt) */
+            [17] = spi_txi_isr, /* SPI0 TXI (Transmit buffer empty) */
             [18] = ctsu_read_isr, /* CTSU READ (Measurement data transfer request interrupt) */
+            [19] = spi_eri_isr, /* SPI0 ERI (Error) */
+            [22] = spi_tei_isr, /* SPI0 TEI (Transmission complete event) */
         };
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENTRIES] =
         {
@@ -35,9 +39,13 @@
             [9] = BSP_PRV_IELS_ENUM(EVENT_IIC0_TXI), /* IIC0 TXI (Transmit data empty) */
             [10] = BSP_PRV_IELS_ENUM(EVENT_RTC_PERIOD), /* RTC PERIOD (Periodic interrupt) */
             [11] = BSP_PRV_IELS_ENUM(EVENT_IIC0_ERI), /* IIC0 ERI (Transfer error) */
+            [12] = BSP_PRV_IELS_ENUM(EVENT_SPI0_RXI), /* SPI0 RXI (Receive buffer full) */
             [13] = BSP_PRV_IELS_ENUM(EVENT_CTSU_WRITE), /* CTSU WRITE (Write request interrupt) */
             [14] = BSP_PRV_IELS_ENUM(EVENT_IIC0_TEI), /* IIC0 TEI (Transmit end) */
             [15] = BSP_PRV_IELS_ENUM(EVENT_CTSU_END), /* CTSU END (Measurement end interrupt) */
+            [17] = BSP_PRV_IELS_ENUM(EVENT_SPI0_TXI), /* SPI0 TXI (Transmit buffer empty) */
             [18] = BSP_PRV_IELS_ENUM(EVENT_CTSU_READ), /* CTSU READ (Measurement data transfer request interrupt) */
+            [19] = BSP_PRV_IELS_ENUM(EVENT_SPI0_ERI), /* SPI0 ERI (Error) */
+            [22] = BSP_PRV_IELS_ENUM(EVENT_SPI0_TEI), /* SPI0 TEI (Transmission complete event) */
         };
         #endif
