@@ -18,6 +18,7 @@
         <file category="header" name="src/Debug.h" path=""/>
         <file category="source" name="src/GUI_Paint.c"/>
         <file category="other" name="src/.DS_Store"/>
+        <file category="header" name="src/EPD_2in9_V2.h" path=""/>
         <file category="header" name="src/ui.h" path=""/>
         <file category="source" name="src/aht20.c"/>
         <file category="source" name="src/rtc.c"/>
@@ -35,6 +36,7 @@
         <file category="source" name="src/utils.c"/>
         <file category="header" name="src/rtc.h" path=""/>
         <file category="header" name="src/aht20.h" path=""/>
+        <file category="source" name="src/EPD_2in9_V2.c"/>
         <file category="source" name="src/ui.c"/>
         <file category="header" name="src/GUI_Paint.h" path=""/>
         <file category="source" name="src/my_entry.c"/>

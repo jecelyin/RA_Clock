@@ -5,7 +5,6 @@ file(GLOB_RECURSE Source_Files
 "${CMAKE_CURRENT_SOURCE_DIR}/ra/*.c"
 "${CMAKE_CURRENT_SOURCE_DIR}/ra/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/ra_gen/*.c"
-"${CMAKE_CURRENT_SOURCE_DIR}/qe_gen/*.c"
 "${CMAKE_CURRENT_SOURCE_DIR}/ra_gen/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
@@ -24,7 +23,6 @@ target_include_directories(${PROJECT_NAME}.elf
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/fsp_cfg
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/fsp_cfg/bsp
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_gen
-    ${CMAKE_CURRENT_SOURCE_DIR}/qe_gen
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 

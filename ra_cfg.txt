@@ -55,7 +55,7 @@ FSP Configuration
     
   RA Common
     Main stack size (bytes): 0x400
-    Heap size (bytes): 0x200
+    Heap size (bytes): 0x800
     MCU Vcc (mV): 3300
     Parameter checking: Disabled
     Assert Failures: Return FSP_ERR_ASSERTION

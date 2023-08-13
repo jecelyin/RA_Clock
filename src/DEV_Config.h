@@ -65,7 +65,6 @@
 **/
 #define EPD_RST_PIN     BSP_IO_PORT_00_PIN_14
 #define EPD_DC_PIN      BSP_IO_PORT_00_PIN_12
-//#define EPD_PWR_PIN     PWR_GPIO_Port, PWR_Pin
 #define EPD_CS_PIN      BSP_IO_PORT_00_PIN_13
 //#define EPD_BUSY_PIN    BUSY_GPIO_Port, BUSY_Pin
 

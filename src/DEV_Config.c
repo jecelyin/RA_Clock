@@ -56,7 +56,6 @@ void DEV_SPI_WriteByte(UBYTE value) {
 int DEV_Module_Init(void) {
     DEV_Digital_Write(EPD_DC_PIN, 0);
     DEV_Digital_Write(EPD_CS_PIN, 0);
-//	DEV_Digital_Write(EPD_PWR_PIN, 1);
     DEV_Digital_Write(EPD_RST_PIN, 1);
     err = R_SPI_Open(&g_spi0_ctrl, &g_spi0_cfg);
     assert(FSP_SUCCESS == err);
@@ -64,12 +63,12 @@ int DEV_Module_Init(void) {
     return 0;
 }
 
-void DEV_Module_Exit(void) {
+void DEV_Module_Exit(void)
+{
     DEV_Digital_Write(EPD_DC_PIN, 0);
     DEV_Digital_Write(EPD_CS_PIN, 0);
 
     //close 5V
-//	DEV_Digital_Write(EPD_PWR_PIN, 0);
     DEV_Digital_Write(EPD_RST_PIN, 0);
 }
 

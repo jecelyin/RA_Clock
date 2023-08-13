@@ -518,11 +518,6 @@
               <FilePath>.\src\epaper.h</FilePath>
             </File>
             <File>
-              <FileName>EPD_2in9.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\EPD_2in9.h</FilePath>
-            </File>
-            <File>
               <FileName>DEV_Config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\DEV_Config.h</FilePath>
@@ -531,11 +526,6 @@
               <FileName>DEV_Config.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\DEV_Config.c</FilePath>
-            </File>
-            <File>
-              <FileName>EPD_2in9.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\EPD_2in9.c</FilePath>
             </File>
             <File>
               <FileName>fonts.h</FileName>
@@ -596,6 +586,26 @@
               <FileName>GUI_Paint.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\GUI_Paint.h</FilePath>
+            </File>
+            <File>
+              <FileName>EPD_2in9_V2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\EPD_2in9_V2.h</FilePath>
+            </File>
+            <File>
+              <FileName>EPD_2in9_V2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\EPD_2in9_V2.c</FilePath>
+            </File>
+            <File>
+              <FileName>EPD_2in9.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\EPD_2in9.h</FilePath>
+            </File>
+            <File>
+              <FileName>EPD_2in9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\EPD_2in9.c</FilePath>
             </File>
           </Files>
         </Group>

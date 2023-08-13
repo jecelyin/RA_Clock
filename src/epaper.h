@@ -5,15 +5,19 @@
 #ifndef EPAPER_H
 #define EPAPER_H
 
+#include <stdlib.h>
 #include "DEV_Config.h"
+#include "EPD_2in9_V2.h"
 #include "EPD_2in9.h"
+#include "GUI_Paint.h"
 
 inline void epd_init() {
     DEV_Module_Init();
-    EPD_2IN9_Init(EPD_2IN9_FULL);
+    printf("e-Paper Init and Clear...\r\n");
+    EPD_2IN9_V2_Init();
+    EPD_2IN9_V2_Clear();
+//    EPD_2IN9_Init(EPD_2IN9_FULL);
+//    EPD_2IN9_Clear();
 }
-#define epd_clear      EPD_2IN9_Clear
-#define epd_display    EPD_2IN9_Display
-#define epd_sleep      EPD_2IN9_Sleep
 
 #endif //EPAPER_H
