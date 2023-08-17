@@ -431,6 +431,7 @@
     <symbolicName propertyId="p012.symbolic_name" value="SPI_DC"/>
     <symbolicName propertyId="p013.symbolic_name" value="SPI_CS"/>
     <symbolicName propertyId="p014.symbolic_name" value="SPI_RST"/>
+    <symbolicName propertyId="p301.symbolic_name" value="SPI_BUSY"/>
     <symbolicName propertyId="p302.symbolic_name" value="Buzzer"/>
     <pincfg active="true" name="R7FA2E1A72DFL.pincfg" selected="true" symbol="g_bsp_pin_cfg">
       <configSetting altId="ctsu0.cfcts28.p015" configurationId="ctsu0.cfcts28"/>
@@ -501,6 +502,8 @@
       <configSetting altId="p213.gpio_mode.gpio_mode_out.low" configurationId="p213.gpio_mode"/>
       <configSetting altId="p300.debug0.swclk" configurationId="p300"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+      <configSetting altId="p301.input" configurationId="p301"/>
+      <configSetting altId="p301.gpio_mode.gpio_mode_in" configurationId="p301.gpio_mode"/>
       <configSetting altId="p302.output.low" configurationId="p302"/>
       <configSetting altId="p302.gpio_mode.gpio_mode_out.low" configurationId="p302.gpio_mode"/>
       <configSetting altId="p400.iic0.scl" configurationId="p400"/>

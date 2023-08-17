@@ -95,6 +95,7 @@ const unsigned char EPD_2IN9_lut_partial_update[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+
 /******************************************************************************
 function :	Software reset
 parameter:
@@ -104,7 +105,7 @@ static void EPD_2IN9_Reset(void)
     DEV_Digital_Write(EPD_RST_PIN, 1);
     DEV_Delay_ms(200);
     DEV_Digital_Write(EPD_RST_PIN, 0);
-    DEV_Delay_ms(2);
+    DEV_Delay_ms(200);
     DEV_Digital_Write(EPD_RST_PIN, 1);
     DEV_Delay_ms(200);
 }
@@ -142,10 +143,10 @@ parameter:
 void EPD_2IN9_ReadBusy(void)
 {
     Debug("e-Paper busy\r\n");
-//    while(DEV_Digital_Read(EPD_BUSY_PIN) == 1) {      //LOW: idle, HIGH: busy
-//        DEV_Delay_ms(100);
-//    }
-    DEV_Delay_ms(50);
+    DEV_Delay_ms(100);
+    while(DEV_Digital_Read(EPD_BUSY_PIN) == 1) {      //LOW: idle, HIGH: busy
+        DEV_Delay_ms(100);
+    }
     Debug("e-Paper busy release\r\n");
 }
 

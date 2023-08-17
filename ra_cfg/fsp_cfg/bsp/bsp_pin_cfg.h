@@ -9,6 +9,7 @@ FSP_HEADER
 #define SPI_DC (BSP_IO_PORT_00_PIN_12)
 #define SPI_CS (BSP_IO_PORT_00_PIN_13)
 #define SPI_RST (BSP_IO_PORT_00_PIN_14)
+#define SPI_BUSY (BSP_IO_PORT_03_PIN_01)
 #define Buzzer (BSP_IO_PORT_03_PIN_02)
 extern const ioport_cfg_t g_bsp_pin_cfg; /* R7FA2E1A72DFL.pincfg */
 

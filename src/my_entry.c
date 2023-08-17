@@ -16,7 +16,6 @@
 #include "rtc.h"
 #include "driver_ds3231.h"
 #include "DEV_Config.h"
-#include "epaper.h"
 #include "ui.h"
 
 
@@ -117,8 +116,6 @@ void my_entry() {
 
     /**********************温湿度测试***************************************/
     printf("e-Paper Init and Clear...\r\n");
-    epd_init();
-    delay_ms(500);
     ui_main();
     /**********************温湿度测试***************************************/
     //Init aht20

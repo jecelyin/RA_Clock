@@ -35,6 +35,7 @@
         </peripheral>
         <peripheral name="PORT3" group="PORT">
             <slot name="P300" secure="false"/>
+            <slot name="P301" secure="false"/>
             <slot name="P302" secure="false"/>
         </peripheral>
         <peripheral name="PORT4" group="PORT">

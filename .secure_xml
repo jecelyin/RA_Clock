@@ -55,6 +55,7 @@
       <configSetting altId="p208.output.low" configurationId="p208"/>
       <configSetting altId="p212.output.low" configurationId="p212"/>
       <configSetting altId="p213.output.low" configurationId="p213"/>
+      <configSetting altId="p301.input" configurationId="p301"/>
       <configSetting altId="p302.output.low" configurationId="p302"/>
       <configSetting altId="p407.input" configurationId="p407"/>
       <configSetting altId="p408.input" configurationId="p408"/>

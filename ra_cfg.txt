@@ -113,7 +113,7 @@ FSP Configuration
       P214 5 - - - - Disabled - - "CGC0: XCOUT" - None - - 
       P215 4 - - - - Disabled - - "CGC0: XCIN" - None - - 
       P300 24 DEBUG0_SWCLK - - - "Peripheral mode" - None "DEBUG0: SWCLK; GPT_OPS0: GTOUUP; GPT0: GTIOC0A" - IO - - 
-      P301 23 - - - - Disabled - - "AGT0: AGTIO0; CTSU0: TS09-CFC; GPT_OPS0: GTOULO; GPT7: GTIOC7B; ICU0: IRQ06; SCI2: RXD2; SCI2: SCL2; SCI9: CTS9" - None - - 
+      P301 23 GPIO SPI_BUSY - None "Input mode" - None "AGT0: AGTIO0; CTSU0: TS09-CFC; GPT_OPS0: GTOULO; GPT7: GTIOC7B; ICU0: IRQ06; SCI2: RXD2; SCI2: SCL2; SCI9: CTS9" - IO - - 
       P302 22 GPIO Buzzer - None "Output mode (Initial Low)" CMOS - "CTSU0: TS08-CFC; GPT_OPS0: GTOUUP; GPT7: GTIOC7A; ICU0: IRQ05; SCI2: SDA2; SCI2: TXD2" - IO - - 
       P400 1 IIC0_SCL0 - - None "Peripheral mode" CMOS None "AGT1: AGTIO1; CAC0: CACREF; GPT9: GTIOC9A; ICU0: IRQ00; IIC0: SCL0; SCI0: SCK0; SCI1: SCK1" - IO - - 
       P401 2 IIC0_SDA0 - - None "Peripheral mode" CMOS None "GPT_POEG0: GTETRGA; GPT9: GTIOC9B; ICU0: IRQ05; IIC0: SDA0; SCI0: CTS0; SCI1: SDA1; SCI1: TXD1" - IO - - 

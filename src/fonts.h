@@ -39,10 +39,11 @@
 #ifndef __FONTS_H
 #define __FONTS_H
 
-/*×î´ó×ÖÌåÎ¢ÈíÑÅºÚ24 (32x41) */
+
+/* Max size of bitmap will based on a font24 (17x24) */
 #define MAX_HEIGHT_FONT         41
 #define MAX_WIDTH_FONT          32
-#define OFFSET_BITMAP           
+#define OFFSET_BITMAP           54
 
 #ifdef __cplusplus
  extern "C" {
@@ -50,7 +51,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
-
+// #include <avr/pgmspace.h>
 //ASCII
 typedef struct _tFont
 {    
@@ -60,14 +61,12 @@ typedef struct _tFont
   
 } sFONT;
 
-
 //GB2312
-typedef struct                                          // ºº×Ö×ÖÄ£Êı¾İ½á¹¹
+typedef struct                                          // æ±‰å­—å­—æ¨¡æ•°æ®ç»“æ„
 {
-  unsigned char index[2];                               // ºº×ÖÄÚÂëË÷Òı
-  const char matrix[MAX_HEIGHT_FONT*MAX_WIDTH_FONT/8];  // µãÕóÂëÊı¾İ
+  unsigned char index[3];                               // æ±‰å­—å†…ç ç´¢å¼•
+  const char matrix[MAX_HEIGHT_FONT*MAX_WIDTH_FONT/8];  // ç‚¹é˜µç æ•°æ®
 }CH_CN;
-
 
 typedef struct
 {    
@@ -87,6 +86,8 @@ extern sFONT Font8;
 
 extern cFONT Font12CN;
 extern cFONT Font24CN;
+// extern const unsigned char Font16_Table[];
+
 #ifdef __cplusplus
 }
 #endif

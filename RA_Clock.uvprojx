@@ -513,11 +513,6 @@
               <FilePath>.\src\.DS_Store</FilePath>
             </File>
             <File>
-              <FileName>epaper.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\epaper.h</FilePath>
-            </File>
-            <File>
               <FileName>DEV_Config.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\DEV_Config.h</FilePath>
@@ -526,46 +521,6 @@
               <FileName>DEV_Config.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\DEV_Config.c</FilePath>
-            </File>
-            <File>
-              <FileName>fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Fonts\fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>font12CN.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font12CN.c</FilePath>
-            </File>
-            <File>
-              <FileName>font20.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font20.c</FilePath>
-            </File>
-            <File>
-              <FileName>font24.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font24.c</FilePath>
-            </File>
-            <File>
-              <FileName>font12.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font12.c</FilePath>
-            </File>
-            <File>
-              <FileName>font24CN.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font24CN.c</FilePath>
-            </File>
-            <File>
-              <FileName>font16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font16.c</FilePath>
-            </File>
-            <File>
-              <FileName>font8.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Fonts\font8.c</FilePath>
             </File>
             <File>
               <FileName>ui.h</FileName>
@@ -588,16 +543,6 @@
               <FilePath>.\src\GUI_Paint.h</FilePath>
             </File>
             <File>
-              <FileName>EPD_2in9_V2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\EPD_2in9_V2.h</FilePath>
-            </File>
-            <File>
-              <FileName>EPD_2in9_V2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\EPD_2in9_V2.c</FilePath>
-            </File>
-            <File>
               <FileName>EPD_2in9.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\EPD_2in9.h</FilePath>
@@ -606,6 +551,51 @@
               <FileName>EPD_2in9.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\EPD_2in9.c</FilePath>
+            </File>
+            <File>
+              <FileName>fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>font12CN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font12CN.c</FilePath>
+            </File>
+            <File>
+              <FileName>EPD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\EPD.h</FilePath>
+            </File>
+            <File>
+              <FileName>font24CN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font24CN.c</FilePath>
+            </File>
+            <File>
+              <FileName>font20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font20.c</FilePath>
+            </File>
+            <File>
+              <FileName>font24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font24.c</FilePath>
+            </File>
+            <File>
+              <FileName>font12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font12.c</FilePath>
+            </File>
+            <File>
+              <FileName>font16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font16.c</FilePath>
+            </File>
+            <File>
+              <FileName>font8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\font8.c</FilePath>
             </File>
           </Files>
         </Group>

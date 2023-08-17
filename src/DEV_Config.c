@@ -3,13 +3,11 @@
 * | Author      :   Waveshare team
 * | Function    :   Hardware underlying interface
 * | Info        :
-*                Used to shield the underlying layers of each master
-*                and enhance portability
 *----------------
-* |	This version:   V2.0
-* | Date        :   2018-10-30
+* |	This version:   V1.0
+* | Date        :   2020-02-19
 * | Info        :
-# ******************************************************************************
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documnetation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -42,38 +40,47 @@ void spi_callback(spi_callback_args_t * p_args) {
     }
 }
 
-//extern SPI_HandleTypeDef hspi1;
-void DEV_SPI_WriteByte(UBYTE value) {
-//    HAL_SPI_Transmit(&hspi1, &value, 1, 1000);
+void GPIO_Config(void)
+{
+//    pinMode(EPD_BUSY_PIN,  INPUT);
+//    pinMode(EPD_RST_PIN , OUTPUT);
+//    pinMode(EPD_DC_PIN  , OUTPUT);
+//    pinMode(EPD_CS_PIN , OUTPUT);
+
+//    digitalWrite(EPD_CS_PIN , HIGH);
+    DEV_Digital_Write(EPD_CS_PIN , HIGH);
+}
+/******************************************************************************
+function:	Module Initialize, the BCM2835 library and initialize the pins, SPI protocol
+parameter:
+Info:
+******************************************************************************/
+UBYTE DEV_Module_Init(void)
+{
+	//gpio
+	GPIO_Config();
+
+	//serial printf
+//	Serial.begin(115200);
+	
+	// spi
+//	SPI.begin();
+    err = R_SPI_Open(&g_spi0_ctrl, &g_spi0_cfg);
+    assert(FSP_SUCCESS == err);
+	return 0;
+}
+
+/******************************************************************************
+function:
+			SPI read and write
+******************************************************************************/
+void DEV_SPI_WriteByte(UBYTE data)
+{
+//    SPI.transfer(data);
     g_transfer_complete = false;
-    err = R_SPI_Write(&g_spi0_ctrl, &value, 1, SPI_BIT_WIDTH_8_BITS);
+    err = R_SPI_Write(&g_spi0_ctrl, &data, 1, SPI_BIT_WIDTH_8_BITS);
     assert(FSP_SUCCESS == err);
     /* Wait for SPI_EVENT_TRANSFER_COMPLETE callback event. */
     while (g_transfer_complete == false) {
     }
-}
-
-int DEV_Module_Init(void) {
-    DEV_Digital_Write(EPD_DC_PIN, 0);
-    DEV_Digital_Write(EPD_CS_PIN, 0);
-    DEV_Digital_Write(EPD_RST_PIN, 1);
-    err = R_SPI_Open(&g_spi0_ctrl, &g_spi0_cfg);
-    assert(FSP_SUCCESS == err);
-
-    return 0;
-}
-
-void DEV_Module_Exit(void)
-{
-    DEV_Digital_Write(EPD_DC_PIN, 0);
-    DEV_Digital_Write(EPD_CS_PIN, 0);
-
-    //close 5V
-    DEV_Digital_Write(EPD_RST_PIN, 0);
-}
-
-bool DEV_Digital_Read(bsp_io_port_pin_t *pin) {
-    bsp_io_level_t ret;
-    R_IOPORT_PinRead(&g_ioport_ctrl, *pin, &ret);
-    return ret == BSP_IO_LEVEL_HIGH;
 }

@@ -3,28 +3,10 @@
 * | Author      :   Waveshare team
 * | Function    :   Hardware underlying interface
 * | Info        :
-*                Used to shield the underlying layers of each master 
-*                and enhance portability
 *----------------
-* |	This version:   V2.0
-* | Date        :   2018-10-30
+* |	This version:   V1.0
+* | Date        :   2020-02-19
 * | Info        :
-* 1.add:
-*   UBYTE\UWORD\UDOUBLE
-* 2.Change:
-*   EPD_RST -> EPD_RST_PIN
-*   EPD_DC -> EPD_DC_PIN
-*   EPD_CS -> EPD_CS_PIN
-*   EPD_BUSY -> EPD_BUSY_PIN
-* 3.Remote:
-*   EPD_RST_1\EPD_RST_0
-*   EPD_DC_1\EPD_DC_0
-*   EPD_CS_1\EPD_CS_0
-*   EPD_BUSY_1\EPD_BUSY_0
-* 3.add:
-*   #define DEV_Digital_Write(_pin, _value) bcm2835_gpio_write(_pin, _value)
-*   #define DEV_Digital_Read(_pin) bcm2835_gpio_lev(_pin)
-*   #define DEV_SPI_WriteByte(__value) bcm2835_spi_transfer(__value)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documnetation files (the "Software"), to deal
@@ -61,30 +43,29 @@
 #define UDOUBLE uint32_t
 
 /**
- * e-Paper GPIO
+ * GPIO config
 **/
 #define EPD_RST_PIN     BSP_IO_PORT_00_PIN_14
 #define EPD_DC_PIN      BSP_IO_PORT_00_PIN_12
 #define EPD_CS_PIN      BSP_IO_PORT_00_PIN_13
-//#define EPD_BUSY_PIN    BUSY_GPIO_Port, BUSY_Pin
+#define EPD_BUSY_PIN    SPI_BUSY
 
 /**
  * GPIO read and write
 **/
-//#define DEV_Digital_Write(_pin, _value) HAL_GPIO_WritePin(_pin, _value == 0? GPIO_PIN_RESET:GPIO_PIN_SET)
+#define HIGH 1
+#define LOW  0
+//#define DEV_Digital_Write(_pin, _value) digitalWrite(_pin, _value == 0? LOW:HIGH)
+#define DEV_Digital_Read(_pin) pin_read(_pin)
 #define DEV_Digital_Write(_pin, _value)  \
-    R_IOPORT_PinWrite(&g_ioport_ctrl, _pin, _value == 1 ? BSP_IO_LEVEL_LOW : BSP_IO_LEVEL_HIGH)
-//#define DEV_Digital_Read(_pin) HAL_GPIO_ReadPin(_pin)
-
+    R_IOPORT_PinWrite(&g_ioport_ctrl, _pin, _value == 0 ? BSP_IO_LEVEL_LOW : BSP_IO_LEVEL_HIGH)
 /**
  * delay x ms
 **/
-#define DEV_Delay_ms(__xms) delay_ms(__xms);
+#define DEV_Delay_ms(__xms) R_BSP_SoftwareDelay(__xms, BSP_DELAY_UNITS_MILLISECONDS)
 
-bool DEV_Digital_Read(bsp_io_port_pin_t *pin);
+/*------------------------------------------------------------------------------------------------------*/
+UBYTE DEV_Module_Init(void);
+void DEV_SPI_WriteByte(UBYTE data);
 
-void DEV_SPI_WriteByte(UBYTE value);
-
-int DEV_Module_Init(void);
-void DEV_Module_Exit(void);
 #endif
