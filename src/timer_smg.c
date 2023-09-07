@@ -55,6 +55,9 @@ extern uint8_t temp_decimal;//温度小数
 extern uint8_t dht11_check;//校验值
 
 uint32_t time_mode_max = 400;
+uint16_t frequency = 1;
+uint32_t duration = 100;
+
 void timer0_callback(timer_callback_args_t *p_args) {
     if (TIMER_EVENT_CYCLE_END == p_args->event) {
         time_mode_num++;
@@ -185,8 +188,10 @@ void set_smg_button(void) {
         qe_sw_num1 = 0;
     } else if (sw1 == 0 && sw2 && sw3 && sw4 && qe_sw == 0)//只有SW1按下
     {
-        if (sw1_num1 < 2001)//按下小于10s,1001是防止变量在1000时候一直切换模式
+        if (sw1_num1 < 2001) {//按下小于10s,1001是防止变量在1000时候一直切换模式
             sw1_num1++;
+            press_sound();
+        }
         if (sw1_num1 % 22 == 0)//模式切换,按下
         {
             //buzzer_num=20;//蜂鸣器叫200ms
@@ -198,14 +203,15 @@ void set_smg_button(void) {
         if (smg_mode == 6)
             smg_mode = 0;
 
-        printf("press key1, sw1_num1=%d, mode=%d\n",sw1_num1, smg_mode);
-        press_sound();
+        printf("press key1, sw1_num1=%d, mode=%d\n", sw1_num1, smg_mode);
     } else if (sw2 == 0 && sw1 && sw3 && sw4 && qe_sw == 0)//只有SW2按下
     {
-        press_sound();
-        if (sw2_num1 < 10)//300ms 减一次
+        if (sw2_num1 < 10) {//300ms 减一次
             sw2_num1++;
-        else {
+            frequency++;
+            press_sound();
+            R_BSP_SoftwareDelay (300, BSP_DELAY_UNITS_MILLISECONDS);
+        } else {
             sw2_num1 = 0;
             if (smg_mode == 1) {
                 if (hour > 0)
@@ -220,13 +226,15 @@ void set_smg_button(void) {
                     min = 59;
             }
         }
-        printf("press key2, mode=%d, hour=%d,min=%d\n",smg_mode,hour,min);
+        printf("press key2, mode=%d, hour=%d,min=%d\n", smg_mode, hour, min);
     } else if (sw3 == 0 && sw1 && sw2 && sw4 && qe_sw == 0)//只有SW3按下
     {
-        press_sound();
-        if (sw3_num1 < 10)//300ms 减一次
+        if (sw3_num1 < 10) {//300ms 减一次
             sw3_num1++;
-        else {
+            duration += 100;
+            press_sound();
+            R_BSP_SoftwareDelay (300, BSP_DELAY_UNITS_MILLISECONDS);
+        } else {
             sw3_num1 = 0;
             if (smg_mode == 1) {
                 if (hour < 23)
@@ -245,12 +253,15 @@ void set_smg_button(void) {
 //    } else if (sw4 == 0 && sw1 && sw2 && sw3 && qe_sw == 0)//只有SW4按下
     } else if (sw1 && sw2 && sw3 && (sw4 == 0 || qe_sw)) //只有SW4 or 触摸电容按下
     {
-        press_sound();
-        printf("press key4\n");
+
 //    } else if (sw1 && sw2 && sw3 && sw4 && qe_sw) { //只有触摸电容按下
-        if (qe_sw_num1 < 30)//2000ms 切换一次
+        if (qe_sw_num1 < 30) {//2000ms 切换一次
             qe_sw_num1++;
-        else {
+//            tone(frequency, duration);
+            press_sound();
+
+            printf("press key4, frequency=%d, duration=%d\n", frequency, duration);
+        } else {
             qe_sw_num1 = 0;
             if (smg_mode == 0)//切换到显示温度
             {

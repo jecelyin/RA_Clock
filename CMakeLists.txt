@@ -5,13 +5,17 @@ cmake_minimum_required(VERSION 3.16.4)
 
 
 # specify cross compilers and tools
-set(CMAKE_C_COMPILER arm-none-eabi-gcc)
-set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
-set(CMAKE_ASM_COMPILER  arm-none-eabi-gcc)
+#set(CMAKE_C_COMPILER arm-none-eabi-gcc)
+set(CMAKE_C_COMPILER cc)
+#set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+set(CMAKE_CXX_COMPILER g++)
+#set(CMAKE_ASM_COMPILER  arm-none-eabi-gcc)
+set(CMAKE_ASM_COMPILER  cc)
 set(CMAKE_AR arm-none-eabi-ar)
 set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
 set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
+set(CMAKE_OSX_ARCHITECTURES "" CACHE STRING "Build architectures for Mac OS X" FORCE)
 #set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # Project configuration

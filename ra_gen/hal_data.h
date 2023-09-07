@@ -4,13 +4,15 @@
 #include <stdint.h>
 #include "bsp_api.h"
 #include "common_data.h"
+#include "r_agt.h"
+#include "r_timer_api.h"
+#include "r_gpt.h"
+#include "r_timer_api.h"
 #include "r_dtc.h"
 #include "r_transfer_api.h"
 #include "r_spi.h"
 #include "r_iic_master.h"
 #include "r_i2c_master_api.h"
-#include "r_gpt.h"
-#include "r_timer_api.h"
 #include "r_rtc.h"
 #include "r_rtc_api.h"
 #include "r_flash_lp.h"
@@ -18,6 +20,26 @@
 #include "r_sci_uart.h"
             #include "r_uart_api.h"
 FSP_HEADER
+/** AGT Timer Instance */
+extern const timer_instance_t g_timer1;
+
+/** Access the AGT instance using these structures when calling API functions directly (::p_api is not used). */
+extern agt_instance_ctrl_t g_timer1_ctrl;
+extern const timer_cfg_t g_timer1_cfg;
+
+#ifndef agt_timer1_callback
+void agt_timer1_callback(timer_callback_args_t * p_args);
+#endif
+/** Timer on GPT Instance. */
+extern const timer_instance_t g_timer7;
+
+/** Access the GPT instance using these structures when calling API functions directly (::p_api is not used). */
+extern gpt_instance_ctrl_t g_timer7_ctrl;
+extern const timer_cfg_t g_timer7_cfg;
+
+#ifndef tone_timer_callback
+void tone_timer_callback(timer_callback_args_t * p_args);
+#endif
 /* Transfer on DTC Instance. */
 extern const transfer_instance_t g_transfer1;
 

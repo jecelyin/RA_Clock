@@ -16,6 +16,7 @@
         <file category="header" name="src/driver_ds3231_interface.h" path=""/>
         <file category="header" name="src/driver_ds3231.h" path=""/>
         <file category="header" name="src/Debug.h" path=""/>
+        <file category="source" name="src/timer.c"/>
         <file category="source" name="src/GUI_Paint.c"/>
         <file category="other" name="src/.DS_Store"/>
         <file category="header" name="src/ui.h" path=""/>
@@ -32,6 +33,7 @@
         <file category="source" name="src/buzzer.c"/>
         <file category="source" name="src/driver_ds3231_interface.c"/>
         <file category="header" name="src/smg.h" path=""/>
+        <file category="header" name="src/timer.h" path=""/>
         <file category="source" name="src/driver_ds3231.c"/>
         <file category="source" name="src/font20.c"/>
         <file category="source" name="src/utils.c"/>
@@ -40,6 +42,7 @@
         <file category="header" name="src/aht20.h" path=""/>
         <file category="source" name="src/ui.c"/>
         <file category="header" name="src/GUI_Paint.h" path=""/>
+        <file category="header" name="src/pitches.h" path=""/>
         <file category="source" name="src/my_entry.c"/>
         <file category="source" name="src/DEV_Config.c"/>
         <file category="source" name="src/EPD_2in9.c"/>
@@ -80,6 +83,7 @@
         <file category="header" name="ra/fsp/inc/api/fsp_common_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_transfer_api.h" path=""/>
         <file category="header" name="ra/fsp/inc/api/r_spi_api.h" path=""/>
+        <file category="header" name="ra/fsp/inc/instances/r_agt.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_sci_uart.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_gpt.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_iic_master.h" path=""/>
@@ -96,6 +100,7 @@
         <file category="source" name="ra/fsp/src/rm_touch/rm_touch.c"/>
         <file category="source" name="ra/fsp/src/r_iic_master/r_iic_master.c"/>
         <file category="source" name="ra/fsp/src/r_gpt/r_gpt.c"/>
+        <file category="source" name="ra/fsp/src/r_agt/r_agt.c"/>
         <file category="header" name="ra/fsp/src/bsp/cmsis/Device/RENESAS/Include/renesas.h" path=""/>
         <file category="header" name="ra/fsp/src/bsp/cmsis/Device/RENESAS/Include/R7FA2E1A9.h" path=""/>
         <file category="header" name="ra/fsp/src/bsp/cmsis/Device/RENESAS/Include/system.h" path=""/>
@@ -186,6 +191,7 @@
         <file category="header" name="ra_cfg/fsp_cfg/r_flash_lp_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_ctsu_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_spi_cfg.h" path=""/>
+        <file category="header" name="ra_cfg/fsp_cfg/r_agt_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_gpt_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/rm_touch_cfg.h" path=""/>
       </files>

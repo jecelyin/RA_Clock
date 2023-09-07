@@ -116,16 +116,16 @@ void my_entry() {
 
     /**********************温湿度测试***************************************/
     printf("e-Paper Init and Clear...\r\n");
-    ui_main();
+//    ui_main();
     /**********************温湿度测试***************************************/
     //Init aht20
-    aht20_init();
+//    aht20_init();
 
-    //Register callback for reading temperature and humidity
-    register_aht20_event_callback( parse_aht20 );
+//    //Register callback for reading temperature and humidity
+//    register_aht20_event_callback( parse_aht20 );
 
-    //Trigger measurement and wait 80mS
-    aht20_trigger_measurement();
+//    //Trigger measurement and wait 80mS
+//    aht20_trigger_measurement();
     /**********************定时器开启***************************************/
     /* Initializes the module. */
     err = R_GPT_Open(&g_timer0_ctrl, &g_timer0_cfg);
@@ -213,8 +213,8 @@ void my_entry() {
             if (rtc_second % 5 == 0) //5S读一次
             {
 //                DHT11_Read ();
-                aht20_trigger_measurement();
-                aht20_event();
+//                aht20_trigger_measurement();
+//                aht20_event();
                 printf("hum=%d temp=%d\n", humdity_integer, temp_integer);
                 if (current_time.format == DS3231_FORMAT_24H)
                 {

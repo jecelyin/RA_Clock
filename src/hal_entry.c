@@ -3,6 +3,8 @@
 #include "my_entry.h"
 #include "utils.h"
 #include "i2c.h"
+#include "buzzer.h"
+#include "timer.h"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -48,6 +50,7 @@ PUTCHAR_PROTOTYPE {
  * is called by main() when no RTOS is used.
  **********************************************************************************************************************/
 void hal_entry(void) {
+    agt_timer_init();
     /* Open the transfer instance with initial configuration. */
     err = R_SCI_UART_Open(&g_uart9_ctrl, &g_uart9_cfg);
     assert(FSP_SUCCESS == err);

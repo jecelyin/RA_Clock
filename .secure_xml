@@ -36,6 +36,7 @@
       <configSetting altId="ctsu0.tscap.p112" configurationId="ctsu0.tscap" isUsedByDriver="true"/>
       <configSetting altId="debug0.swclk.p300" configurationId="debug0.swclk" isUsedByDriver="true"/>
       <configSetting altId="debug0.swdio.p108" configurationId="debug0.swdio" isUsedByDriver="true"/>
+      <configSetting altId="gpt7.gtioca.p302" configurationId="gpt7.gtioca" isUsedByDriver="true"/>
       <configSetting altId="iic0.scl.p400" configurationId="iic0.scl" isUsedByDriver="true"/>
       <configSetting altId="iic0.sda.p401" configurationId="iic0.sda" isUsedByDriver="true"/>
       <configSetting altId="irq0.irq00.p206" configurationId="irq0.irq00"/>
@@ -56,7 +57,6 @@
       <configSetting altId="p212.output.low" configurationId="p212"/>
       <configSetting altId="p213.output.low" configurationId="p213"/>
       <configSetting altId="p301.input" configurationId="p301"/>
-      <configSetting altId="p302.output.low" configurationId="p302"/>
       <configSetting altId="p407.input" configurationId="p407"/>
       <configSetting altId="p408.input" configurationId="p408"/>
       <configSetting altId="p409.output.low" configurationId="p409"/>
