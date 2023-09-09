@@ -1,6 +1,6 @@
 #include "hal_data.h"
 #include <stdio.h>
-#include "my_entry.h"
+#include "app.h"
 #include "utils.h"
 #include "i2c.h"
 #include "buzzer.h"
@@ -50,17 +50,15 @@ PUTCHAR_PROTOTYPE {
  * is called by main() when no RTOS is used.
  **********************************************************************************************************************/
 void hal_entry(void) {
-    agt_timer_init();
     /* Open the transfer instance with initial configuration. */
     err = R_SCI_UART_Open(&g_uart9_ctrl, &g_uart9_cfg);
     assert(FSP_SUCCESS == err);
     err = R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
-    /* Handle any errors. This function should be defined by the user. */
     assert(FSP_SUCCESS == err);
-    I2C_Init();
+    // 注意printf要在R_SCI_UART_Open之后运行
     printf("Hi, Renesas entry!\n");
 //    i2c_detect();
-    my_entry();
+    app_entry();
 
 #if BSP_TZ_SECURE_BUILD
     /* Enter non-secure code */

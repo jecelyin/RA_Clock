@@ -150,16 +150,6 @@ FSP Configuration
     Code Flash Programming: Enabled
     Data Flash Programming: Enabled
     
-  Module "Realtime Clock (r_rtc)"
-    Parameter Checking: Default (BSP)
-    Set Source Clock in Open: Enabled
-    
-  Module "Timer, General PWM (r_gpt)"
-    Parameter Checking: Default (BSP)
-    Pin Output Support: Enabled
-    Write Protect Enable: Disabled
-    Clock Source: PCLKD
-    
   Module "I2C Master (r_iic_master)"
     Parameter Checking: Default (BSP)
     DTC on Transmission and Reception: Disabled
@@ -185,10 +175,20 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Linker section to keep DTC vector table: .fsp_dtc_vector_table
     
+  Module "Timer, General PWM (r_gpt)"
+    Parameter Checking: Default (BSP)
+    Pin Output Support: Enabled
+    Write Protect Enable: Disabled
+    Clock Source: PCLKD
+    
   Module "Timer, Low-Power (r_agt)"
     Parameter Checking: Default (BSP)
     Pin Output Support: Disabled
     Pin Input Support: Disabled
+    
+  Module "Realtime Clock (r_rtc)"
+    Parameter Checking: Default (BSP)
+    Set Source Clock in Open: Enabled
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -230,67 +230,6 @@ FSP Configuration
       Data Flash Background Operation: Enabled
       Callback: flash_callback
       Flash Ready Interrupt Priority: Priority 2
-      
-    Instance "g_rtc0 Realtime Clock (r_rtc)"
-      Name: g_rtc0
-      Clock Source: LOCO
-      Frequency Comparision Value (LOCO): 255
-      Automatic Adjustment Mode: Enabled
-      Automatic Adjustment Period: 10 Seconds
-      Adjustment Type (Plus-Minus): NONE
-      Error Adjustment Value: 0
-      Callback: rtc_callback
-      Alarm Interrupt Priority: Priority 2
-      Period Interrupt Priority: Priority 2
-      Carry Interrupt Priority: Priority 2
-      
-    Instance "g_timer0 Timer, General PWM (r_gpt)"
-      General: Name: g_timer0
-      General: Channel: 0
-      General: Mode: Periodic
-      General: Period: 1
-      General: Period Unit: Seconds
-      Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
-      Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
-      Output: Custom Waveform: GTIOA: Compare Match Output Level: Pin Level Retain
-      Output: Custom Waveform: GTIOA: Retain Output Level at Count Stop: Disabled
-      Output: Custom Waveform: GTIOB: Initial Output Level: Pin Level Low
-      Output: Custom Waveform: GTIOB: Cycle End Output Level: Pin Level Retain
-      Output: Custom Waveform: GTIOB: Compare Match Output Level: Pin Level Retain
-      Output: Custom Waveform: GTIOB: Retain Output Level at Count Stop: Disabled
-      Output: Custom Waveform: Custom Waveform Enable: Disabled
-      Output: Duty Cycle Percent (only applicable in PWM mode): 50
-      Output: GTIOCA Output Enabled: False
-      Output: GTIOCA Stop Level: Pin Level Low
-      Output: GTIOCB Output Enabled: False
-      Output: GTIOCB Stop Level: Pin Level Low
-      Input: Count Up Source: 
-      Input: Count Down Source: 
-      Input: Start Source: 
-      Input: Stop Source: 
-      Input: Clear Source: 
-      Input: Capture A Source: 
-      Input: Capture B Source: 
-      Input: Noise Filter A Sampling Clock Select: No Filter
-      Input: Noise Filter B Sampling Clock Select: No Filter
-      Interrupts: Callback: timer0_callback
-      Interrupts: Overflow/Crest Interrupt Priority: Priority 2
-      Interrupts: Capture A Interrupt Priority: Disabled
-      Interrupts: Capture B Interrupt Priority: Disabled
-      Interrupts: Underflow/Trough Interrupt Priority: Disabled
-      Extra Features: Extra Features: Disabled
-      Extra Features: Output Disable: POEG Link: POEG Channel 0
-      Extra Features: Output Disable: Output Disable POEG Trigger: 
-      Extra Features: ADC Trigger: Start Event Trigger (Channels with GTINTAD only): 
-      Extra Features: Dead Time (Value range varies with Channel): Dead Time Count Up (Raw Counts): 0
-      Extra Features: Dead Time (Value range varies with Channel): Dead Time Count Down (Raw Counts) (Channels with GTDVD only): 0
-      Extra Features: ADC Trigger (Channels with GTADTRA only): ADC A Compare Match (Raw Counts): 0
-      Extra Features: ADC Trigger (Channels with GTADTRB only): ADC B Compare Match (Raw Counts): 0
-      Extra Features: Interrupt Skipping (Channels with GTITC only): Interrupt to Count: None
-      Extra Features: Interrupt Skipping (Channels with GTITC only): Interrupt Skip Count: 0
-      Extra Features: Interrupt Skipping (Channels with GTITC only): Skip ADC Events: None
-      Extra Features: Output Disable: GTIOCA Disable Setting: Disable Prohibited
-      Extra Features: Output Disable: GTIOCB Disable Setting: Disable Prohibited
       
     Instance "g_i2c_master0 I2C Master (r_iic_master)"
       Name: g_i2c_master0
@@ -432,4 +371,17 @@ FSP Configuration
       Input: Trigger Edge: Trigger Edge Rising
       Interrupts: Callback: agt_timer1_callback
       Interrupts: Underflow Interrupt Priority: Priority 0 (highest)
+      
+    Instance "g_rtc0 Realtime Clock (r_rtc)"
+      Name: g_rtc0
+      Clock Source: LOCO
+      Frequency Comparision Value (LOCO): 255
+      Automatic Adjustment Mode: Enabled
+      Automatic Adjustment Period: 10 Seconds
+      Adjustment Type (Plus-Minus): NONE
+      Error Adjustment Value: 0
+      Callback: NULL
+      Alarm Interrupt Priority: Disabled
+      Period Interrupt Priority: Disabled
+      Carry Interrupt Priority: Priority 2
       

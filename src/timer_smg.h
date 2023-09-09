@@ -10,5 +10,8 @@
 
 #include "hal_data.h"
 
+#ifdef USE_SMG
 void set_smg_button(void);//处理数码管显示,当前状态修改
+#endif
+
 #endif /* TIMER_SMG_H_ */

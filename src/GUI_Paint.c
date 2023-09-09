@@ -5,8 +5,8 @@
 *                   their size, solid dotted line, solid rectangle hollow
 *                   rectangle, solid circle hollow circle.
 * | Info        :
-*   Achieve display characters: Display a single character, string, number
-*   Achieve time display: adaptive size display time minutes and seconds
+*   Achieve g_display characters: Display a single character, string, number
+*   Achieve time g_display: adaptive size g_display time minutes and seconds
 *----------------
 * |	This version:   V3.2
 * | Date        :   2020-08-04
@@ -49,7 +49,7 @@
 * 4.add: Paint_SetMirroring() 
 *    Can Mirroring the picture, horizontal, vertical, origin
 * 5.add: Paint_DrawString_CN() 
-*    Can display Chinese(GB1312)   
+*    Can g_display Chinese(GB1312)
 *
 * ----------------------------------------------------------------------------- 
 * V1.0(2018-07-17):
@@ -189,7 +189,7 @@ parameter:
 void Paint_SetPixel(UWORD Xpoint, UWORD Ypoint, UWORD Color)
 {
     if(Xpoint > Paint.Width || Ypoint > Paint.Height){
-        Debug("Exceeding display boundaries\r\n");
+        Debug("Exceeding g_display boundaries\r\n");
         return;
     }      
     UWORD X, Y;
@@ -232,7 +232,7 @@ void Paint_SetPixel(UWORD Xpoint, UWORD Ypoint, UWORD Color)
     }
 
     if(X > Paint.WidthMemory || Y > Paint.HeightMemory){
-        Debug("Exceeding display boundaries\r\n");
+        Debug("Exceeding g_display boundaries\r\n");
         return;
     }
     
@@ -371,7 +371,7 @@ void Paint_DrawPoint(UWORD Xpoint, UWORD Ypoint, UWORD Color,
                      DOT_PIXEL Dot_Pixel, DOT_STYLE Dot_Style)
 {
     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
-        Debug("Paint_DrawPoint Input exceeds the normal display range\r\n");
+        Debug("Paint_DrawPoint Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -410,7 +410,7 @@ void Paint_DrawLine(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend,
 {
     if (Xstart > Paint.Width || Ystart > Paint.Height ||
         Xend > Paint.Width || Yend > Paint.Height) {
-        Debug("Paint_DrawLine Input exceeds the normal display range\r\n");
+        Debug("Paint_DrawLine Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -468,7 +468,7 @@ void Paint_DrawRectangle(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend,
 {
     if (Xstart > Paint.Width || Ystart > Paint.Height ||
         Xend > Paint.Width || Yend > Paint.Height) {
-        Debug("Input exceeds the normal display range\r\n");
+        Debug("Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -500,7 +500,7 @@ void Paint_DrawCircle(UWORD X_Center, UWORD Y_Center, UWORD Radius,
                       UWORD Color, DOT_PIXEL Line_width, DRAW_FILL Draw_Fill)
 {
     if (X_Center > Paint.Width || Y_Center >= Paint.Height) {
-        Debug("Paint_DrawCircle Input exceeds the normal display range\r\n");
+        Debug("Paint_DrawCircle Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -560,7 +560,7 @@ function: Show English characters
 parameter:
     Xpoint           ：X coordinate
     Ypoint           ：Y coordinate
-    Acsii_Char       ：To display the English characters
+    Acsii_Char       ：To g_display the English characters
     Font             ：A structure pointer that displays a character size
     Color_Foreground : Select the foreground color
     Color_Background : Select the background color
@@ -571,7 +571,7 @@ void Paint_DrawChar(UWORD Xpoint, UWORD Ypoint, const char Acsii_Char,
     UWORD Page, Column;
 
     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
-        Debug("Paint_DrawChar Input exceeds the normal display range\r\n");
+        Debug("Paint_DrawChar Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -621,7 +621,7 @@ void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char * pString,
     UWORD Ypoint = Ystart;
 
     if (Xstart > Paint.Width || Ystart > Paint.Height) {
-        Debug("Paint_DrawString_EN Input exceeds the normal display range\r\n");
+        Debug("Paint_DrawString_EN Input exceeds the normal g_display range\r\n");
         return;
     }
 
@@ -766,7 +766,7 @@ void Paint_DrawNum(UWORD Xpoint, UWORD Ypoint, int32_t Nummber,
     uint8_t *pStr = Str_Array;
 
     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
-        Debug("Paint_DisNum Input exceeds the normal display range\r\n");
+        Debug("Paint_DisNum Input exceeds the normal g_display range\r\n");
         return;
     }
 

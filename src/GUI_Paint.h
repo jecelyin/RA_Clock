@@ -5,8 +5,8 @@
 *                   their size, solid dotted line, solid rectangle hollow
 *                   rectangle, solid circle hollow circle.
 * | Info        :
-*   Achieve display characters: Display a single character, string, number
-*   Achieve time display: adaptive size display time minutes and seconds
+*   Achieve g_display characters: Display a single character, string, number
+*   Achieve time g_display: adaptive size g_display time minutes and seconds
 *----------------
 * |	This version:   V3.1
 * | Date        :   2019-10-10
@@ -42,7 +42,7 @@
 * 4.add: Paint_SetMirroring() 
 *    Can Mirroring the picture, horizontal, vertical, origin
 * 5.add: Paint_DrawString_CN() 
-*    Can display Chinese(GB1312)   
+*    Can g_display Chinese(GB1312)
 *
 * ----------------------------------------------------------------------------- 
 * V1.0(2018-07-17):
@@ -178,7 +178,6 @@ typedef struct {
     UBYTE  Min;   //0 - 59
     UBYTE  Sec;   //0 - 59
 } PAINT_TIME;
-extern PAINT_TIME sPaint_time;
 
 //init and Clear
 void Paint_NewImage(UBYTE *image, UWORD Width, UWORD Height, UWORD Rotate, UWORD Color);

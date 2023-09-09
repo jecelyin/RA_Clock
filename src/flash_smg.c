@@ -6,6 +6,10 @@
  */
 #include "flash_smg.h"
 
+void flash_callback(flash_callback_args_t *p_args) {
+
+}
+#ifdef USE_FLASH
 volatile bool interrupt_called;
 volatile flash_event_t flash_event;
 
@@ -82,5 +86,5 @@ void ReadTimeFlash() {
         time_set[TIME_SEC] = 0;
 }
 
-
+#endif
 

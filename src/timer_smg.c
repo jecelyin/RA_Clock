@@ -9,7 +9,7 @@
 #include "stdio.h"
 #include "buzzer.h"
 
-
+#ifdef USE_SMG
 //数码管变量
 uint8_t num1 = 1, num2 = 4, num3 = 6, num4 = 8;//4个数码管显示的数值
 uint8_t num_flag = 0;//4个数码管和冒号轮流显示，一轮刷新五次
@@ -287,7 +287,7 @@ void set_smg_button(void) {
 }
 
 
-
+#endif
 
 
 

@@ -10,6 +10,7 @@
 
 #include "hal_data.h"
 
+#ifdef USE_FLASH
 #define FLASH_DF_BLOCK_0                0x40100000U/*   1 KB: 0x40100000 - 0x401003FF */
 
 #define TIME_SEC    0
@@ -26,5 +27,6 @@ void SaveTimeFlash();
 /*FLASH读取打印程序*/
 void ReadTimeFlash();
 
+#endif // #ifdef USE_FLASH
 
 #endif /* FLASH_SMG_H_ */

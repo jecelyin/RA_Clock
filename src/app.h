@@ -1,5 +1,5 @@
 /*
- * my_entry.h
+ * app_entry.h
  *
  *  Created on: 2023年7月22日
  *      Author: jecelyin
@@ -11,6 +11,6 @@
 #include "hal_data.h"
 #include "stdio.h"
 
-void my_entry();
+void app_entry();
 
 #endif /* MY_ENTRY_H_ */

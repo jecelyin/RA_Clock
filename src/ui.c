@@ -3,127 +3,145 @@
 //
 
 #include "ui.h"
-#include "GUI_Paint.h"
-#include "DEV_Config.h"
-#include "EPD.h"
-#include "GUI_Paint.h"
-//#include "imagedata.h"
-#include <stdlib.h>
-#define Imagesize ((EPD_2IN9_WIDTH % 8 == 0)? (EPD_2IN9_WIDTH / 8 ): (EPD_2IN9_WIDTH / 8 + 1)) * EPD_2IN9_HEIGHT
-
-UBYTE imgMem[Imagesize] = {0};
-void ui_main() {
-    printf("EPD_2IN9_test Demo\r\n");
-    DEV_Module_Init();
-
-    printf("e-Paper Init and Clear...\r\n");
-    EPD_2IN9_Init(EPD_2IN9_FULL);
-    EPD_2IN9_Clear();
-    DEV_Delay_ms(500);
-
-    //Create a new image cache
-    UBYTE *BlackImage;
-    /* you have to edit the startup_stm32fxxx.s file and set a big enough heap size */
-//    UWORD Imagesize = ((EPD_2IN9_WIDTH % 8 == 0)? (EPD_2IN9_WIDTH / 8 ): (EPD_2IN9_WIDTH / 8 + 1)) * EPD_2IN9_HEIGHT;
-//    if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
-//        printf("Failed to apply for black memory...\r\n");
-//        while(1);
-//    }
-    BlackImage = imgMem;
-    printf("Paint_NewImage\r\n");
-    Paint_NewImage(BlackImage, EPD_2IN9_WIDTH, EPD_2IN9_HEIGHT, 270, WHITE);
+#include "display.h"
+#include "ui_home.h"
+#include "ui_setting.h"
+#include "buzzer.h"
+#include <stdarg.h>
 
 
-#if 1   //show image for array
-    Paint_NewImage(BlackImage, EPD_2IN9_WIDTH, EPD_2IN9_HEIGHT, 270, WHITE);
-    printf("show image for array\r\n");
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-//    Paint_DrawBitMap(gImage_2in9);
+static context_t ui_context;
+// 注意要和page_name_t顺序一致
+static ui_init_ptr pages_init[] = {
+        ui_home_init,
+        ui_setting_init
+};
 
-    EPD_2IN9_Display(BlackImage);
-    DEV_Delay_ms(2000);
-#endif
 
-#if 1   // Drawing on the image
-    printf("Drawing\r\n");
-    //1.Select Image
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
+static void destroy_page(ui_page_t *page);
+static void page_stack_init(page_stack *page_stack);
+static bool page_stack_is_empty(page_stack* page_stack);
+static bool page_stack_is_full(page_stack* page_stack);
+static void page_stack_push(page_stack* page_stack, ui_page_t* item);
+static ui_page_t* page_stack_pop(page_stack* page_stack);
+static ui_page_t* page_stack_last(page_stack* page_stack);
 
-    // 2.Drawing on the image
-    printf("Drawing:BlackImage\r\n");
-    Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
+void navigate_to(page_name_t page_name, ...) {
+    va_list args;
+    va_start(args, page_name);
 
-    Paint_DrawLine(20, 70, 70, 120, BLACK, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
-    Paint_DrawLine(70, 70, 20, 120, BLACK, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
+    ui_page_t page;
+    ui_init_ptr init_fun = pages_init[page_name];
+    init_fun(&page);
 
-    Paint_DrawRectangle(20, 70, 70, 120, BLACK, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawRectangle(80, 70, 130, 120, BLACK, DOT_PIXEL_1X1, DRAW_FILL_FULL);
+    context_t *ctx = &ui_context;
+    page_stack *pages = &ctx->page_stacks;
+    page_stack_push(pages, &page);
 
-    Paint_DrawCircle(45, 95, 20, BLACK, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawCircle(105, 95, 20, WHITE, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-
-    Paint_DrawLine(85, 95, 125, 95, BLACK, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-    Paint_DrawLine(105, 75, 105, 115, BLACK, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-
-    Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
-    Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
-
-    Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
-    Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
-
-    Paint_DrawString_CN(130, 0,"你好abc", &Font12CN, BLACK, WHITE);
-    Paint_DrawString_CN(130, 20, "微雪电子", &Font24CN, WHITE, BLACK);
-
-    EPD_2IN9_Display(BlackImage);
-    DEV_Delay_ms(2000);
-#endif
-
-#if 1   //Partial refresh, example shows time
-    printf("Partial refresh\r\n");
-    EPD_2IN9_Init(EPD_2IN9_PART);
-    Paint_SelectImage(BlackImage);
-    PAINT_TIME sPaint_time;
-    sPaint_time.Hour = 12;
-    sPaint_time.Min = 34;
-    sPaint_time.Sec = 56;
-    UBYTE num = 20;
-    for (;;) {
-        sPaint_time.Sec = sPaint_time.Sec + 1;
-        if (sPaint_time.Sec == 60) {
-            sPaint_time.Min = sPaint_time.Min + 1;
-            sPaint_time.Sec = 0;
-            if (sPaint_time.Min == 60) {
-                sPaint_time.Hour =  sPaint_time.Hour + 1;
-                sPaint_time.Min = 0;
-                if (sPaint_time.Hour == 24) {
-                    sPaint_time.Hour = 0;
-                    sPaint_time.Min = 0;
-                    sPaint_time.Sec = 0;
-                }
-            }
-        }
-        Paint_ClearWindows(150, 80, 150 + Font20.Width * 7, 80 + Font20.Height, WHITE);
-        Paint_DrawTime(150, 80, &sPaint_time, &Font20, WHITE, BLACK);
-
-        num = num - 1;
-        if(num == 0) {
-            break;
-        }
-        EPD_2IN9_Display(BlackImage);
-        DEV_Delay_ms(500);//Analog clock 1s
+    if (!page.created) {
+        page.on_create(0, args);
+        page.created = true;
     }
 
-#endif
-    printf("Clear...\r\n");
-    EPD_2IN9_Init(EPD_2IN9_FULL);
-    EPD_2IN9_Clear();
+    va_end(args);
+}
 
-    printf("Goto Sleep...\r\n");
-    EPD_2IN9_Sleep();
-    free(BlackImage);
-    BlackImage = NULL;
+void navigate_pop() {
+    context_t *ctx = &ui_context;
+    page_stack *pages = &ctx->page_stacks;
+    ui_page_t *page = page_stack_pop(pages);
+    destroy_page(page);
+}
+
+void ui_init() {
+    context_t *ctx = &ui_context;
+    page_stack *pages = &ctx->page_stacks;
+    page_stack_init(pages);
+
+    key_event_init();
+
+    navigate_to(HOME_PAGE);
+}
+
+void ui_update() {
+    page_stack *pages = &ui_context.page_stacks;
+    ui_page_t *curr_page = page_stack_last(pages);
+
+    if (!curr_page->is_visible) {
+        curr_page->is_visible = true;
+        curr_page->on_appear();
+    }
+
+    key_event_t *event = detect_key_event();
+    if (event != NULL) {
+        press_sound();
+        curr_page->on_key_event(event);
+    }
+    event = detect_touch_event();
+    if (event != NULL) {
+        press_sound();
+        curr_page->on_key_event(event);
+    }
+
+    curr_page->on_update();
+}
+
+static void destroy_page(ui_page_t *page) {
+    page->on_destroy();
+    page->created = false;
+}
+
+void ui_destroy() {
+    // todo: destroy all page
+}
+
+
+static void page_stack_init(page_stack *page_stack) {
+    page_stack->front = -1;
+    page_stack->rear = -1;
+}
+
+static bool page_stack_is_empty(page_stack* page_stack) {
+    return (page_stack->front == -1);
+}
+
+static bool page_stack_is_full(page_stack* page_stack) {
+    return ((page_stack->rear + 1) % MAX_PAGE_STACK == page_stack->front);
+}
+
+static void page_stack_push(page_stack* page_stack, ui_page_t* item) {
+    if (page_stack_is_full(page_stack)) {
+        printf("Error: page_stack is full.\n");
+        return;
+    }
+
+    if (page_stack_is_empty(page_stack)) {
+        page_stack->front = page_stack->rear = 0;
+    } else {
+        page_stack->rear = (page_stack->rear + 1) % MAX_PAGE_STACK;
+    }
+
+    page_stack->items[page_stack->rear] = *item;
+}
+
+static ui_page_t* page_stack_pop(page_stack* page_stack) {
+    if (page_stack_is_empty(page_stack)) {
+        printf("Error: page_stack is empty.\n");
+        return NULL;
+    }
+
+    ui_page_t * item = &page_stack->items[page_stack->front];
+
+    if (page_stack->front == page_stack->rear) {
+        page_stack->front = page_stack->rear = -1;
+    } else {
+        page_stack->front = (page_stack->front + 1) % MAX_PAGE_STACK;
+    }
+
+    return item;
+}
+
+static ui_page_t* page_stack_last(page_stack* page_stack) {
+    ui_page_t* item = &page_stack->items[page_stack->front];
+    return item;
 }

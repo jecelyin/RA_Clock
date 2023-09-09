@@ -54,7 +54,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -408,11 +408,6 @@
               <FilePath>.\src\flash_smg.c</FilePath>
             </File>
             <File>
-              <FileName>my_entry.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\my_entry.h</FilePath>
-            </File>
-            <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\i2c.c</FilePath>
@@ -431,11 +426,6 @@
               <FileName>utils.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\utils.c</FilePath>
-            </File>
-            <File>
-              <FileName>my_entry.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\my_entry.c</FilePath>
             </File>
             <File>
               <FileName>flash_smg.h</FileName>
@@ -612,20 +602,75 @@
               <FileType>5</FileType>
               <FilePath>.\src\pitches.h</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>qe_gen</GroupName>
-          <Files>
             <File>
               <FileName>qe_touch_config.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\qe_gen\qe_touch_config.c</FilePath>
+              <FilePath>.\src\qe_touch_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>qe_touch_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\qe_touch_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>qe_touch_define.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\qe_touch_define.h</FilePath>
             </File>
             <File>
               <FileName>qe_touch_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\qe_gen\qe_touch_config.h</FilePath>
+              <FilePath>.\src\qe_touch_config.h</FilePath>
+            </File>
+            <File>
+              <FileName>display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\display.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_home.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\ui_home.h</FilePath>
+            </File>
+            <File>
+              <FileName>key_event.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\key_event.h</FilePath>
+            </File>
+            <File>
+              <FileName>app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\app.h</FilePath>
+            </File>
+            <File>
+              <FileName>display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\display.h</FilePath>
+            </File>
+            <File>
+              <FileName>key_event.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\key_event.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_home.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\ui_home.c</FilePath>
+            </File>
+            <File>
+              <FileName>app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\app.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_setting.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\ui_setting.h</FilePath>
+            </File>
+            <File>
+              <FileName>ui_setting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\ui_setting.c</FilePath>
             </File>
           </Files>
         </Group>

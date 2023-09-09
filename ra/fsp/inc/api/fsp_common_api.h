@@ -243,8 +243,8 @@ typedef enum e_fsp_err
     FSP_ERR_ETHER_PHY_NOT_READY  = 5001,             ///< PHY has an error in the Auto-negotiation
 
     /* Start of BYTEQ library specific */
-    FSP_ERR_QUEUE_FULL  = 10000,                     ///< Queue is full, cannot queue another data
-    FSP_ERR_QUEUE_EMPTY = 10001,                     ///< Queue is empty, no data to dequeue
+    FSP_ERR_QUEUE_FULL  = 10000,                     ///< queue is full, cannot queue another data
+    FSP_ERR_QUEUE_EMPTY = 10001,                     ///< queue is empty, no data to dequeue
 
     /* Start of CTSU Driver specific */
     FSP_ERR_CTSU_SCANNING              = 6000,       ///< Scanning.

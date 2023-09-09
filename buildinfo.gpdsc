@@ -12,47 +12,59 @@
       <project_files>
         <file category="include" name="src/"/>
         <file category="header" name="src/utils.h" path=""/>
+        <file category="header" name="src/ui_setting.h" path=""/>
+        <file category="source" name="src/display.c"/>
         <file category="source" name="src/smg.c"/>
         <file category="header" name="src/driver_ds3231_interface.h" path=""/>
         <file category="header" name="src/driver_ds3231.h" path=""/>
         <file category="header" name="src/Debug.h" path=""/>
         <file category="source" name="src/timer.c"/>
         <file category="source" name="src/GUI_Paint.c"/>
+        <file category="header" name="src/ui_home.h" path=""/>
         <file category="other" name="src/.DS_Store"/>
         <file category="header" name="src/ui.h" path=""/>
         <file category="source" name="src/aht20.c"/>
         <file category="source" name="src/rtc.c"/>
         <file category="header" name="src/fonts.h" path=""/>
+        <file category="header" name="src/key_event.h" path=""/>
         <file category="source" name="src/font12CN.c"/>
         <file category="source" name="src/flash_smg.c"/>
         <file category="header" name="src/EPD_2in9.h" path=""/>
         <file category="header" name="src/DEV_Config.h" path=""/>
-        <file category="header" name="src/my_entry.h" path=""/>
         <file category="source" name="src/i2c.c"/>
+        <file category="header" name="src/app.h" path=""/>
         <file category="source" name="src/timer_smg.c"/>
         <file category="source" name="src/buzzer.c"/>
+        <file category="source" name="src/qe_touch_config.c"/>
         <file category="source" name="src/driver_ds3231_interface.c"/>
         <file category="header" name="src/smg.h" path=""/>
         <file category="header" name="src/timer.h" path=""/>
         <file category="source" name="src/driver_ds3231.c"/>
+        <file category="source" name="src/ui_setting.c"/>
         <file category="source" name="src/font20.c"/>
+        <file category="header" name="src/display.h" path=""/>
         <file category="source" name="src/utils.c"/>
         <file category="source" name="src/font24.c"/>
+        <file category="source" name="src/qe_touch_sample.c"/>
+        <file category="source" name="src/key_event.c"/>
         <file category="header" name="src/rtc.h" path=""/>
         <file category="header" name="src/aht20.h" path=""/>
         <file category="source" name="src/ui.c"/>
         <file category="header" name="src/GUI_Paint.h" path=""/>
         <file category="header" name="src/pitches.h" path=""/>
-        <file category="source" name="src/my_entry.c"/>
+        <file category="source" name="src/ui_home.c"/>
         <file category="source" name="src/DEV_Config.c"/>
         <file category="source" name="src/EPD_2in9.c"/>
         <file category="header" name="src/flash_smg.h" path=""/>
         <file category="source" name="src/font12.c"/>
+        <file category="header" name="src/qe_touch_define.h" path=""/>
         <file category="header" name="src/timer_smg.h" path=""/>
         <file category="header" name="src/EPD.h" path=""/>
+        <file category="header" name="src/qe_touch_config.h" path=""/>
         <file category="source" name="src/font24CN.c"/>
         <file category="header" name="src/buzzer.h" path=""/>
         <file category="source" name="src/hal_entry.c"/>
+        <file category="source" name="src/app.c"/>
         <file category="source" name="src/font16.c"/>
         <file category="header" name="src/i2c.h" path=""/>
         <file category="source" name="src/font8.c"/>
@@ -95,6 +107,7 @@
         <file category="header" name="ra/fsp/inc/instances/r_dtc.h" path=""/>
         <file category="header" name="ra/fsp/inc/instances/r_flash_lp.h" path=""/>
         <file category="header" name="ra/fsp/inc/fsp_version.h" path=""/>
+        <file category="other" name="ra/fsp/.DS_Store"/>
         <file category="source" name="ra/fsp/src/r_ioport/r_ioport.c"/>
         <file category="source" name="ra/fsp/src/r_sci_uart/r_sci_uart.c"/>
         <file category="source" name="ra/fsp/src/rm_touch/rm_touch.c"/>
@@ -177,6 +190,7 @@
       <files>
         <file category="include" name="ra_cfg/fsp_cfg/"/>
         <file category="include" name="ra_cfg/fsp_cfg/bsp/"/>
+        <file category="other" name="ra_cfg/.DS_Store"/>
         <file category="header" name="ra_cfg/fsp_cfg/r_iic_master_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/r_rtc_cfg.h" path=""/>
         <file category="header" name="ra_cfg/fsp_cfg/bsp/bsp_mcu_device_pn_cfg.h" path=""/>

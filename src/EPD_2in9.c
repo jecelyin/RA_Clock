@@ -151,7 +151,7 @@ void EPD_2IN9_ReadBusy(void)
 }
 
 /******************************************************************************
-function :	Setting the display window
+function :	Setting the g_display window
 parameter:
 ******************************************************************************/
 static void EPD_2IN9_SetWindows(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend)
